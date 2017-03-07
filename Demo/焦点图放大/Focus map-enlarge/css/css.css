@@ -1,0 +1,64 @@
+BODY {
+	FONT-SIZE: 9pt; BACKGROUND: #d8d8d8; MARGIN: 0px auto; COLOR: #505050; FONT-FAMILY: ËÎÌו,arial,verdana,sans-serif,fantasy,tahoma; TEXT-DECORATION: none; background1: #c8e4f2
+}
+A {
+	TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #505050; color1: #54564c
+}
+A:visited {
+	COLOR: #505050; color1: #54564c
+}
+A:hover {
+	COLOR: #d40005; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #f30
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.box {
+	FLOAT: left; WIDTH: 472px
+}
+.box .boxpadding {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 8px; PADDING-TOP: 8px
+}
+#Slide {
+	CLEAR: both; BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; MARGIN-BOTTOM: 6px; OVERFLOW: hidden; BORDER-LEFT: #fff 1px solid; WIDTH: 450px; BORDER-BOTTOM: #fff 1px solid; HEIGHT: 335px
+}
+#Slide A {
+	COLOR: #000
+}
+.img {
+	BORDER-RIGHT: #fff 1px solid; BACKGROUND: #fff; MARGIN: 0px auto; BORDER-LEFT: #fff 1px solid; TEXT-ALIGN: center
+}
+.boxpadding {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BACKGROUND: #f8f8f8; MARGIN-BOTTOM: 8px; BORDER-LEFT: #fff 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #fff 1px solid
+}
+
+.thumb_title {
+	MARGIN-TOP: 10px; BACKGROUND: #fff; FILTER: alpha(opacity=30); WIDTH: 450px; TEXT-INDENT: 10px; LINE-HEIGHT: 25px; POSITION: absolute; HEIGHT: 25px; -moz-opacity: 0.3
+}
+#Slide_Thumb {
+	MARGIN-TOP: 257px; MARGIN-LEFT: 0px; POSITION: absolute
+}
+.thumb_on {
+	DISPLAY: inline; FLOAT: left; MARGIN-LEFT: 8px; CURSOR: pointer
+}
+.thumb_off {
+	DISPLAY: inline; FLOAT: left; MARGIN-LEFT: 8px; CURSOR: pointer
+}
+.thumb_off {
+	FILTER: alpha(opacity=50); -moz-opacity: 0.5
+}
+.thumb_on {
+	FILTER: alpha(opacity=100); -moz-opacity: 1
+}
+.thumb_off IMG {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; MARGIN-TOP: 12px; BORDER-LEFT: #fff 1px solid; WIDTH: 75px; BORDER-BOTTOM: #fff 1px solid; HEIGHT: 56px
+}
+.thumb_on IMG {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BORDER-LEFT: #fff 1px solid; WIDTH: 91px; BORDER-BOTTOM: #fff 1px solid; HEIGHT: 68px
+}

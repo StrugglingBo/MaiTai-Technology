@@ -1,0 +1,234 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!--设置visual（展示） viewport和layout（布局） viewport一致-->
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>麦买购官方网站- 生活中必不可少的购物APP</title>
+    <meta name="keywords" content="麦买购" />
+    <meta name="description" content="麦买购" />
+    <!-- Bootstrap -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="IE-js/html5shiv.min.js"></script>
+    <script src="IE-js/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Mask/js/jquery.event.drag-1.5.min.js"></script>
+    <script type="text/javascript" src="../Mask/js/jquery.touchSlider.js"></script>
+    <script src="../Mask/js/goodsfresh.js"></script>
+    <!--实现轮播效果-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".main_visual").hover(function () {
+                $("#btn_prev,#btn_next").fadeIn()
+            }, function () {
+                $("#btn_prev,#btn_next").fadeOut()
+            });
+
+            $dragBln = false;
+
+            $(".main_image").touchSlider({
+                flexible: true,
+                speed: 200,
+                btn_prev: $("#btn_prev"),
+                btn_next: $("#btn_next"),
+                paging: $(".flicking_con a"),
+                counter: function (e) {
+                    $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+                }
+            });
+
+            $(".main_image").bind("mousedown", function () {
+                $dragBln = false;
+            });
+
+            $(".main_image").bind("dragstart", function () {
+                $dragBln = true;
+            });
+
+            $(".main_image a").click(function () {
+                if ($dragBln) {
+                    return false;
+                }
+            });
+
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+
+            $(".main_visual").hover(function () {
+                clearInterval(timer);
+            }, function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+            $(".main_image").bind("touchstart", function () {
+                clearInterval(timer);
+            }).bind("touchend", function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+
+            /***装运**/
+
+            $("#pop-mask,#btn-close,#btn-ok").click(function () {
+                $("#pop-mask").hide();
+                $("#pop-tip").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+<!--A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}-->
+<!--A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}-->
+<!--A.info          {color:#2F5BFF;background:transparent;text-decoration:none}-->
+<!--A.info:hover    {color:green;background:transparent;text-decoration:underline}-->
+</style>
+<!--<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>-->
+<!--This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.1.2.1052</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/28/17 9:26:30.<br>-->
+<!--<b>Address:</b> <a class="info" href="http://www.51maimaigo.com/index.html">http://www.51maimaigo.com/index.html</a><br>-->
+<!--<b>Title:</b> 麦买购官方网站- 生活中必不可少的购物APP &nbsp;&bull;&nbsp; <b>Size:</b> 9760<br></div>-->
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+<div class="mask">
+    <div class="mask-1">
+        <a href="javascript:;" onclick="jQuery('.mask').hide()" class="close" style="font-size: 16px;color:red;">关闭</a>
+        <img src="" alt=""/>
+    </div>
+</div>
+<!--<a href="javascript:;" onclick="jQuery('.mask').show()" class="show">显示</a>-->
+<div id="pageContainer">
+            <div class="home">
+                <!--导航栏//头部-->
+                <div class="top-front">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="../Mask/images/logo-top.png">
+                        </a>
+                    </div>
+                    <div class="slogan">
+                        <img src="../Mask/images/slogan.png">
+                    </div>
+                    <div class="login">
+                        <a href="usercenter.html"></a>
+                    </div>
+                </div>
+                <!--效果html开始-->
+                <div class="main_visual">
+                    <div class="flicking_con">
+
+                        <a href="javascript:;">0</a>
+
+                        <a href="javascript:;">1</a>
+
+                        <a href="javascript:;">2</a>
+
+                        <a href="javascript:;">3</a>
+
+                    </div>
+                    <div class="main_image">
+                        <ul>
+
+                            <a href="goods/show-184.html" style="display:block; width:100%; height:100%;">
+                                <li><span style="background: url('../Mask/images/201702241518177163.jpg') top center no-repeat; background-size: cover;">
+                        </span></li>
+                            </a>
+
+                            <a href="goods/show-107.html" style="display:block; width:100%; height:100%;">
+                                <li><span style="background: url('../Mask/images/201612021813331032.jpg') top center no-repeat; background-size: cover;">
+                        </span></li>
+                            </a>
+
+                            <a href="goods/show-107.html" style="display:block; width:100%; height:100%;">
+                                <li><span style="background: url('../Mask/images/201612011559072190.jpg') top center no-repeat; background-size: cover;">
+                        </span></li>
+                            </a>
+
+                            <a href="goods/show-110.html" style="display:block; width:100%; height:100%;">
+                                <li><span style="background: url('../Mask/images/201612021053055956.jpg') top center no-repeat; background-size: cover;">
+                        </span></li>
+                            </a>
+
+                        </ul>
+                        <a href="javascript:;" id="btn_prev"></a>
+                        <a href="javascript:;" id="btn_next"></a>
+                    </div>
+                </div>
+                <!--效果html结束-->
+                <!--分类//-->
+                <nav class="quick-entry">
+
+                    <a href="goods/52.html"><img src="../Mask/images/201611121331122846.png"><span>生活用品</span></a>
+
+                    <a href="goods/53.html"><img src="../Mask/images/201611121331305907.png"><span>服装服饰</span></a>
+
+                    <a href="goods/54.html"><img src="../Mask/images/201611121331473166.png"><span>手机数码</span></a>
+
+                    <a href="goods/0.html"><img src="../Mask/images/ticon-4.png"><span>全部</span></a>
+                </nav>
+                <!--推荐商品//-->
+                <div class="section feature">
+                    <div class="section-hd">
+                        <span>推荐商品</span></div>
+                    <div class="section-bd">
+                        <ul>
+
+                            <li><span class="thumb"><a href="goods/show-107.html">
+                                <img src="../Mask/images/201612051343359479.png"></a></span><span class="title"><a href="goods/show-107.html">梦娜斯皮埃尔干红葡萄酒2瓶礼盒装</a></span><span
+                                    class="price">560.00</span></li>
+
+                            <li><span class="thumb"><a href="goods/show-110.html">
+                                <img src="../Mask/images/201612081724010707.png"></a></span><span class="title"><a href="goods/show-110.html">大山村富硒米2.5Kg</a></span><span
+                                    class="price">140.00</span></li>
+
+                            <li><span class="thumb"><a href="goods/show-184.html">
+                                <img src="../Mask/images/201702241403016069.jpg"></a></span><span class="title"><a href="goods/show-184.html">大众途观1.8T自动丝绸版</a></span><span
+                                    class="price">237800.00</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!--商品列表//-->
+                <div class="section goods">
+                    <div class="section-hd">
+                        <span>商品列表</span></div>
+                    <div class="section-bd">
+                        <ul id="thelist"></ul>
+                    </div>
+                    <div id="pullUp">
+                        <span class="pullUpLabel"></span>
+                    </div>
+                    <div class='copyright'>&copy; 麦太科技 浙ICP备16046396号-1</div>
+                    <input type="hidden" id="cid" value="0" />
+                </div>
+                <!--导航// 尾部-->
+                <div class="bottom-bar">
+                    <a href="index.html" class="cat1 active"><i></i><span>首页</span></a>
+                    <a href="integral/0.html" class="cat5"><i></i><span>麦豆换购</span></a>
+                    <a href="shop.html" class="cat2"><i></i><span>本地生活</span></a>
+                    <a href="order_list.html" class="cat3"><i></i><span>我的订单</span></a>
+                    <a href="usercenter.html" class="cat4"><i></i><span>会员中心</span></a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

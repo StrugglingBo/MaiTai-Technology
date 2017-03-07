@@ -1,0 +1,357 @@
+@charset "utf-8";
+/* CSS Document */
+#pageContainer {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+
+.list {
+    position:relative;
+    float: left;
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0px auto;
+    padding: 50px 0px 50px 0px;
+        width: 100%;
+}
+
+
+img {
+    width: 100%;
+    border: none;
+}
+
+/****分类导航***/
+.list #category{
+    position:fixed;
+    top:50px;
+    left:0px;
+    z-index:999;
+}
+/***商品列表***/
+.list .section {
+    float: left;
+    width: 100%;
+    background-color: #fff;
+}
+.list .section.goods .section-hd {
+    float:left;
+    width:100%;
+    overflow:hidden;
+}
+
+/*****/
+.list .section.goods .section-bd {
+    float: left;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.list .goods .section-bd li {
+    position: relative;
+    float: left;
+    width: 45%;
+    padding: 10px;
+    margin: 0px 3% 10px 3%;
+    border: 1px solid #eaeaea;
+}
+
+.list .goods .section-bd li:nth-child(2n) {
+    margin-left: 0px;
+}
+
+.list .goods .section-bd li .thumb img {
+
+}
+
+.list .goods .section-bd li .title {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .goods .section-bd li .price {
+    float: left;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #ff3300;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*****道教资讯******/
+.list .information .item {
+    width: 100%;
+    padding: 10px 0px 5px 0px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.list .information .item:last-child {
+    border-bottom: none;
+}
+
+.list .information .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.list .information .item .title {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .desc {
+    display: block;
+    height: 36px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .date {
+    display: block;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .date .view {
+    float: left;
+}
+
+.list .information .item .date .time {
+    float: right;
+}
+
+/*****慈善救助******/
+.list .donation .section-bd {
+    padding: 0px;
+    background-color: #eaeaea;
+}
+
+.list .donation .item {
+    float: left;
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+
+.list .donation .item:last-child {
+    border-bottom: none;
+}
+
+.list .donation .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.list .donation .item .title {
+    display: block;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.donation .item .desc {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target label {
+    display: inline-block;
+    width: 33%;
+    margin: 0px;
+    font-weight: normal;
+}
+
+.donation .item .target label .r {
+    font-weight: bold;
+    color: #ff3300;
+}
+
+.donation .item .target label.t1 {
+    text-align: left;
+}
+
+.donation .item .target label.t2 {
+    text-align: center;
+}
+
+.donation .item .target label.t3 {
+    text-align: right;
+}
+
+.list .donation .item .prg {
+    float: left;
+    width: 100%;
+}
+
+.donation .item .prg .track {
+    float: left;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #eaeaea;
+}
+
+.donation .item .prg .fill {
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ff3300;
+}
+
+.donation .item .support {
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+
+}
+
+.donation .item .support .list {
+    float: left;
+    padding-left: 10px;
+    min-width: 200px;
+    max-width: 500px;
+}
+
+.donation .item .support .list img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: -13px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+}
+
+.donation .item .support .txt {
+    float: right;
+    width: 80px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+/*****结缘祖宫******/
+
+#pageContainer .place-btns {
+    float: left;
+    width: 100%;
+    height: 60px;
+    padding: 10px 15px 0px 15px;
+}
+
+#pageContainer .btns {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px 15px 0px 15px;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+}
+
+#pageContainer .btns.inner {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 60px;
+    padding: 10px 15px 0px 15px;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    background: none;
+    border-top: none;
+}
+
+#pageContainer .btns a {
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background-color: #f95200;
+    border-radius: 5px;
+}
+
+
+/*fanyz*/
+.iconcate
+{
+        background: #fff;
+    margin-bottom: 20px;
+    margin-top:5px;
+    }
+    .titlebg
+    {
+        margin:0px;
+            font-size: .34rem;
+    padding-bottom: .2rem;
+    color: #333;
+    padding-left:20px;
+    line-height:50px;
+    height:50px;
+    border-bottom:1px solid #DDD8CE;
+            }

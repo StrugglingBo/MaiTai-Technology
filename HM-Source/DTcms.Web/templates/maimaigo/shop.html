@@ -1,0 +1,113 @@
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <title>{site.seo_title}</title>
+    <meta name="keywords" content="{site.seo_keyword}" />
+    <meta name="description" content="{site.seo_description}" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/eve.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/iconfont.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/shop.css" rel="stylesheet">
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/jquery.cookie.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script src="<%templateskin%>/js/shopfresh.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wj8X01lY9KBl1rbBiwAGFG5GQS0m1dlS"></script>  
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+
+    <style>
+        @font-face
+        {
+            font-family: 'base_icon';
+            src: url(<%templateskin%>/fonts/base14.woff) format("woff"), url(<%templateskin%>/fonts/base14.otf);
+        }
+    </style>
+    <script>
+        function GetQueryString(name) {
+            var url = window.location.search; //获取url中"?"符后的字串   
+            var theRequest = "";
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    if (strs[i].split("=")[0] == name) {
+                        theRequest = decodeURI(strs[i].split("=")[1]);
+                    }
+                }
+            }
+            return theRequest;
+        }
+    </script>
+</head>
+<body>
+    <div id="index" class="automove">
+        <div id="pagecontainer">
+            <header id="header" class="navbar">
+            <div class="nav-wrap-left">
+                <a href="<%linkurl("citypicker")%>" class="react">
+                    <span class="nav-city"><font id="spancityname">获取中</font><space></space><i class="text-icon icon-downarrow"></i></span>
+                </a>
+            </div>
+
+            <div class="box-search">
+                <a class="react" href="<%linkurl("shop_list",0)%>">
+                    <i class="icon-search text-icon">⌕</i>
+	                    <span class="single-line">
+	                    			输入商家/品类/商圈
+	                    	</span>
+                </a>
+            </div>
+            <div class="nav-wrap-right">
+                <a class="react" rel="nofollow" href="<%linkurl("usercenter")%>">
+                    <span class="nav-btn">
+                        <i class="text-icon">⍥</i>我的
+                    </span>
+                </a>
+            </div>
+        </header>
+            <dl id="list" class="list list-in">
+                <dd class="icon-wrapper h_gesture_" style="height: 3.3rem;">
+                    <ul class="icon-list page current">
+                        <%set DataTable categoryList=get_category_list("localserver",0,7)%>
+                        <%foreach(DataRow cdr in categoryList.Rows)%>
+                        <li class="icon"><a style="display: block" href=" <%linkurl("shop_list",{cdr[id]})%>">
+                            {cdr[seo_description]}<span class="icon-desc">{cdr[title]}</span></a> </li>
+                        <%/foreach%>
+                        <li class="icon"><a style="display: block" href="<%linkurl("shop_list","0")%>"><span
+                            class="new-icon-circle iconfont quanbu" style="background: #00d3be"></span><span
+                                class="icon-desc">全部分类</span></a> </li>
+                    </ul>
+                    <ul class="list-ico list">
+                    </ul>
+                </dd>
+            </dl>
+            <div id="guessLike" class="guess-like">
+                <dl class="list" style="opacity: 1;">
+                    <dd>
+                        <dl id="thelist" class="list" style="opacity: 1;">
+                        </dl>
+                        <div id="pullUp">
+                            <span class="pullUpLabel"></span>
+                        </div>
+                        <input type="hidden" id="cid" value="0" />
+                    </dd>
+                </dl>
+            </div>
+            <div class="bottom-bar">
+                <a href="<%linkurl("index")%>" class="cat1"><i></i><span>首页</span></a><a href="<%linkurl("integral_list",0)%>"
+                    class="cat5"><i></i><span>积分商城</span></a><a href="<%linkurl("shop")%>" class="cat2 active"><i></i><span>本地生活</span></a><a
+                        href="<%linkurl("order_list")%>" class="cat3"><i></i><span>我的订单</span></a><a href="<%linkurl("usercenter")%>"
+                            class="cat4"><i></i><span>会员中心</span></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

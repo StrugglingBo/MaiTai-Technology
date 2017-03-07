@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>商品详情--{site.seo_title}</title>
+    <meta name="keywords" content="{site.seo_keyword}" />
+    <meta name="description" content="{site.seo_description}" />
+    <link href="<%templateskin%>/css/animate.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/confirm.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/city-picker.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/city-picker.data.js"></script>
+    <script src="<%templateskin%>/js/city-picker.js"></script>
+    <script src="<%templateskin%>/js/jquery.dropkick-min.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script src="<%templateskin%>/js/common.js"></script>
+    <script>
+        $(function () {
+            var $citypicker3 = $('#city-picker3');
+            var pp="";
+            var ct="";
+            var dt="";
+            <%if({addrmodel}!=null)%>
+            var addr="{addrmodel.area}";
+            var arr = addr.split(',');
+                pp=arr[0];
+                ct=arr[1];
+                dt=arr[2];
+            <%/if%>
+            $citypicker3.citypicker({
+                level:"district",
+                province: pp,
+                city: ct,
+                district: dt
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            initGoodsSpec('{config.webpath}tools/submit_ajax.ashx?action=get_article_goods_info');
+            var $actionType = ""; //cart,order
+            //购买数量
+            $(".tb .amount .reduce").click(function () {
+                if ($(".tb .amount .number").val() - 1 <= 0) {
+                    $(".tb .amount .number").val(1);
+                } else {
+                    $(".tb .amount .number").val($(".tb .amount .number").val() - 1);
+                }
+                var pricesingle = $("#sprice").val();
+                var nowcount = $("#commoditySelectNum").val();
+                var npoint=$("#hfnpoint").val();
+                if(parseFloat(npoint)>0){
+                    $("#showmoeny").html("应付金额：￥" + (parseFloat(pricesingle) * nowcount).toFixed(2)+"+"+(parseFloat(npoint) * nowcount).toFixed(2)+"麦豆");
+                }
+                else
+                {
+                    $("#showmoeny").html("应付金额：￥" + (parseFloat(pricesingle) * nowcount).toFixed(2));
+                }
+            });
+
+            $(".tb .amount .increase").click(function () {
+                var maxnum = $("#commoditySelectNum").attr("maxvalue");
+                if ((parseInt($(".tb .amount .number").val()) + 1) > parseInt(maxnum)) {
+                    return false;
+                }
+                else {
+                    $(".tb .amount .number").val(parseInt($(".tb .amount .number").val()) + 1);
+                }
+                var pricesingle = $("#sprice").val();
+                var nowcount = $("#commoditySelectNum").val();
+                 var npoint=$("#hfnpoint").val();
+                if(parseFloat(npoint)>0){
+                    $("#showmoeny").html("应付金额：￥" + (parseFloat(pricesingle) * nowcount).toFixed(2)+"+"+(parseFloat(npoint) * nowcount).toFixed(2)+"麦豆");
+                }
+                else
+                {
+                    $("#showmoeny").html("应付金额：￥" + (parseFloat(pricesingle) * nowcount).toFixed(2));
+                }
+            });
+            //购买按钮
+            $(".buy-btn").click(function () {
+                $("#payTips").show();
+            });
+
+            //关闭按钮
+            $(".close").click(function () {
+                $("#payTips").hide();
+            });
+
+            //关闭按钮
+            $(".item .need-bill").click(function () {
+                if ($(this).is(':checked')) {
+                    $(".item.bill .sub-option").show();
+                    $(".item.bill .value").text("邮寄需支付快递费10元！");
+                } else {
+                    $(".item.bill .sub-option").hide();
+                    $(".item.bill .value").text("需要发票可自行到公司领取！");
+                }
+            });
+            
+        });
+        function save_order_topay() {
+            var pid = {proid};
+            var bnum=$("#commoditySelectNum").val();
+
+            var accept_name=$("#accept_name").val();
+
+            var pca=$("#city-picker3").val();
+            var province="";
+            var city="";
+            var area="";
+            if(pca!=""){
+                var arr = pca.split('/');
+                if (arr.length > 1) {
+                province=arr[0];
+                city=arr[1];
+                area=arr[2];
+                 }
+                    else {
+                        layer.open({
+                            content: "请选择寄送地址所在区域！",
+                            time: 2000
+                        });
+                        return false;
+                    }
+            }
+            var address=$("#address").val();
+            var mobile=$("#mobile").val();
+
+            var goodno=$("#commodityGoodsNo").val();
+            var post_card="";
+            var carduname="";
+            if(goodno!=""){
+                 post_card=$("#cardnumber").val();
+                 carduname=$("#carduname").val();
+            }
+            var postid=$("#post_id").val();
+            var baseurl = '/tools/submit_ajax.ashx?action=order_save&pid='+pid+'&bnum=' + bnum + '&site=maimaigo&accept_name='+accept_name+'&province='+province+'&city='+city+'&area='+area+'&address='+address+'&mobile='+mobile+"&goodno="+goodno+"&post_card="+post_card+"&carduname="+carduname+"&postid="+postid;
+            var b=1;
+            var vpoint=$("#hfnpoint").val();
+            if(vpoint*1>0){
+                layer.open({
+                            content: "确认下单后,麦豆将扣除,是否确定?",
+                            btn: ['确认', '取消'],
+                            yes: function (index) {
+                                dobase(baseurl);
+                            },
+                            no: function (index) {
+                                b=1;
+                            }
+                        });
+            }
+            else
+            {
+                b=0;
+            }
+            if(b==0){
+                dobase(baseurl);
+            }
+        }
+        function dobase(burl){
+            $.ajax({
+                    url: burl,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: '1000',
+                    cache: 'false',
+                    success: function (data) {
+                        if (data.status == "1") {
+                            var turl = data.url;
+                            if (turl != "") {
+                                if (typeof (data.url) == "undefined") {
+                                    location.href = $("#turl").val();
+                                } else {
+                                    location.href = data.url;
+                                }
+                            }
+                        } else {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    }
+                });
+        }
+    </script>
+</head>
+<body>
+    <input type="hidden" id="sprice" value="{gmodel.fields[sell_price]}" />
+    <div id="pageContainer">
+        <div class="confirm-list">
+            <div class="top-front">
+                <a href="<%linkurl("goods_show",{proid})%>" class="back"></a>
+                <div class="slogan">
+                    订单支付</div>
+                <div class="login">
+                    <a href="<%linkurl("usercenter")%>"></a>
+                </div>
+            </div>
+            <ul>
+                <%set List<DTcms.Model.article_goods_spec> specList=get_article_goods_spec({gmodel.id}, "parent_id=0")%>
+                <li class="item">
+                    <div class="option receiver">
+                        <%if({addrmodel}!=null)%>
+                        <span class="label">收货人</span><span class="value"><input id="accept_name" name="accept_name"
+                            type="text" placeholder="请填写收货人" value="{addrmodel.accept_name}"></span><span class="add">+</span>
+                        <%else%>
+                        <span class="label">收货人</span><span class="value"><input id="accept_name" name="accept_name"
+                            type="text" placeholder="请填写收货人"></span><span class="add">+</span>
+                        <%/if%>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="option receiver">
+                        <span class="label">省/市/区</span><span class="value" style="padding-left: 75px;"><div
+                            id="distpicker">
+                            <div style="position: relative;">
+                                <input id="city-picker3" class="form-control" readonly type="text" data-toggle="city-picker3">
+                            </div>
+                        </div>
+                        </span>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="option address">
+                        <%if({addrmodel}!=null)%>
+                        <span class="label">收货地址</span><span class="value"><input id="address" name="address"
+                            type="text" placeholder="请填写收货地址" value="{addrmodel.address}"></span>
+                        <%else%>
+                        <span class="label">收货地址</span><span class="value"><input id="address" name="address"
+                            type="text" placeholder="请填写收货地址"></span>
+                        <%/if%>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="option receiver">
+                        <%if({addrmodel}!=null)%>
+                        <span class="label">联系电话</span><span class="value"><input id="mobile" name="mobile"
+                            type="text" placeholder="请输入联系电话" value="{addrmodel.mobile}"></span>
+                        <%else%>
+                        <span class="label">联系电话</span><span class="value"><input id="mobile" name="mobile"
+                            type="text" placeholder="请输入联系电话" value="{userModel.mobile}"></span>
+                        <%/if%>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="option">
+                        <span class="label">货品清单</span></div>
+                    <div class="sub-option product">
+                        <div class="thumb">
+                            <img src="{gmodel.img_url}" />
+                        </div>
+                        <div class="title">
+                            {gmodel.title}</div>
+                        <div class="price">
+                            <i>
+                                <%if(double.Parse({gmodel.fields[point]})>0)%>
+                                ￥{gmodel.fields[sell_price]}+{gmodel.fields[point]}麦豆
+                                <%else%>
+                                ￥{gmodel.fields[sell_price]}
+                                <%/if%>
+                            </i><b id="commodityStockNum">库存:{gmodel.fields[stock_quantity]}</b></div>
+                        <div class="title">
+                            {spec_text}</div>
+                    </div>
+                </li>
+            </ul>
+            <!--油卡选择结束//-->
+            <ul>
+                <li class="item">
+                    <div class="option receiver">
+                        <span class="label">购买数量</span>
+                        <div class="tb" id="selectTb">
+                            <span class="value"><i class="amount"><b class="reduce">-</b><input id="commoditySelectNum"
+                                maxlength="9" value="{buynum}" maxvalue="{gmodel.fields[stock_quantity]}" onkeydown="return checkNumber(event);"
+                                type="text" class="number" readonly="readonly" /><b class="increase">+</b></i></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="sub-option payment">
+                        <i>支付宝支付</i><b></b></div>
+                </li>
+            </ul>
+        </div>
+        <!--底部按钮//-->
+        <div class="button-bar">
+            <%set double tpaymoney=double.Parse({gmodel.fields[sell_price]})*{buynum} %>
+            <%set double tpaypoint=double.Parse({gmodel.fields[point]})*{buynum} %>
+            <span id="showmoeny">应付金额：
+                <%if(tpaypoint>0)%>
+                ￥{tpaymoney}+{tpaypoint}麦豆
+                <%else%>
+                ￥{tpaymoney}
+                <%/if%>
+            </span><a id="buyButton" href="javascript:;" onclick="save_order_topay()" class="buy-btn">
+                确认下单</a></div>
+        <input type="hidden" id="turl" value="<%linkurl("order_list")%>" />
+        <input type="hidden" id="commodityArticleId" value="{gmodel.id}" />
+        <input type="hidden" id="post_id" name="post_id" value="{postid}" />
+        <input type="hidden" id="hfnpoint" name="hfnpoint" value="{gmodel.fields[point]}" />
+        <input type="hidden" id="nowurl" value="<%linkurl("confirm")%>" />
+        <input type="hidden" id="commodityGoodsNo" name="commodityGoodsNo" value="{goodno}" />
+        <input type="hidden" id="cardnumber" name="cardnumber" value="{cardno}" />
+        <input type="hidden" id="carduname" name="carduname" value="{carduname}" />
+    </div>
+    <div id="address-list">
+        <div class="address-list">
+            <%set DataTable list=get_user_addr_book_list(15, 1, "user_id="+userModel.id, out totalcount)%><!--取得一个DataTable-->
+            <%set string pagelist=get_page_link(15, 1, totalcount, "useraddress", "__id__")%>
+            <!--取得分页页码列表-->
+            <%foreach(DataRow dr in list.Rows)%>
+            <div class="item" onclick="setAddr({dr[id]})">
+                <div class="item-hd">
+                    <span class="name">{dr[accept_name]}</span><span class="tel">
+                        <%if({dr[telphone]}!="")%>
+                        {dr[telphone]}<%else%>
+                        {dr[mobile]}<%/if%></span></div>
+                <div class="item-bd">
+                    <%if({dr[is_default]}=="1")%><b>[默认地址]</b><%/if%>{dr[area]} {dr[address]}</div>
+            </div>
+            <%/foreach%>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            //弹窗
+            $(".add").click(function () {
+                layer.open({
+                    type: 1,
+                    area: ['80%', 'auto'],
+                    closeBtn: 1, //不显示关闭按钮
+                    shift: 2,
+                    title: '请选择寄送地址',
+                    shadeClose: true, //开启遮罩关闭
+                    content: $("#address-list").html()
+                });
+            });
+        });
+        function setAddr(id) {
+            window.location.href = $("#nowurl").val() + "?gid=" + $("#commodityArticleId").val() + "&num=" + $("#commoditySelectNum").val() + "&postid=" + id + "&carduname=" + $("#carduname").val() + "&cardnumber=" + $("#cardnumber").val() + "&goodno=" + $("#commodityGoodsNo").val();
+        }
+
+    </script>
+</body>
+</html>

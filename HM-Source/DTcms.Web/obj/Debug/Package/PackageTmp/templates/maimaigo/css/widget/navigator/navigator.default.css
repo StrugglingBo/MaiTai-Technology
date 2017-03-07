@@ -1,0 +1,26 @@
+/** 一级导航样式 */
+.ui-navigator {
+    width: 100%;
+    background:#fff;
+    border-top:1px solid #dfdfdf;
+    border-bottom:1px solid #dfdfdf;
+}
+.ui-navigator .ui-navigator-list li a, .ui-navigator .ui-navigator-fix{
+    padding: 0.6em 15px;
+    font-size: 14px;
+    color: #020200;
+    text-decoration: none;
+    outline: none;
+    font-family: "微软雅黑" "黑体" ;
+    text-align: center;
+}
+/*css for pad*/
+@media all and (min-device-width: 768px) and (max-device-width: 1024px){
+    .ui-navigator .ui-navigator-list li a, .ui-navigator .ui-navigator-fix{
+        font-size: 18px;
+    }
+}
+
+.ui-navigator .ui-navigator-list li a.cur, .ui-navigator .ui-navigator-fix.cur{
+    border-bottom:2px solid #ff3300;
+}

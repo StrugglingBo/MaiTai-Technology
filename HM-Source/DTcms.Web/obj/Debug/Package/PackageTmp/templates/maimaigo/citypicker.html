@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>城市选择</title>
+    <link rel="stylesheet" href="<%templateskin%>/css/cityPicker.css">
+</head>
+<body>
+    <input type="text" class="city" readonly="" style="display:none;">
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/cityPicker.js"></script>
+    <script type="text/javascript">
+        $(".city").CityPicker();
+    </script>
+</body>
+</html>

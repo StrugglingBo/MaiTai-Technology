@@ -1,0 +1,562 @@
+@charset "utf-8";
+/* CSS Document */
+#pageContainer {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+
+.list {
+    position: relative;
+    float: left;
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0px auto;
+    padding: 90px 0px 50px 0px;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    border: none;
+}
+
+@font-face {
+    font-family: 'cate_icon';
+    src: url(../fonts/cate4.woff?v7) format("woff"), url(../fonts/cate4.otf?v7);
+}
+
+@font-face {
+    font-family: 'base_icon';
+    src: url(../fonts/base14.woff) format("woff"), url(../fonts/base14.otf);
+}
+
+/*****头部*******/
+.nav-btn .text-icon {
+    display: block;
+    margin: auto;
+    margin-bottom: .12rem;
+    font-size: .4rem;
+}
+
+.text-icon {
+    font-family: base_icon;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal
+}
+
+.icon-downarrow {
+    position: relative
+}
+
+.icon-downarrow:after {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: -.2em;
+    width: .5em;
+    height: .5em;
+    border-bottom: .03rem solid #fff;
+    border-left: .03rem solid #fff;
+    -webkit-transform: scaleX(0.7) rotateZ(-45deg);
+    -moz-transform: scaleX(0.7) rotateZ(-45deg);
+    -ms-transform: scaleX(0.7) rotateZ(-45deg)
+}
+
+a.react, label.react {
+    display: block;
+    color: inherit;
+}
+
+space {
+    display: inline-block;
+    width: .12rem;
+}
+
+.navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 1.01rem;
+    color: #fff;
+    background: #30b4f6;
+    border-bottom: 1px solid #2a9ed8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    z-index: 999;
+}
+
+.navbar .nav-wrap-left {
+    height: 1.01rem;
+    line-height: 1.01rem;
+}
+
+.navbar .nav-wrap-right {
+    height: 100%
+}
+
+.navbar .box-search {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    border-radius: .06rem;
+    background: rgba(0, 0, 0, .15);
+    height: .64rem;
+    line-height: .64rem;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    margin-top: .2rem
+}
+
+.navbar h1.nav-header, .navbar .h1.nav-header {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    font-size: .36rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1rem;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+
+.navbar .box-search input.single-line {
+    display: block;
+    width: 100%;
+    height: .64rem;
+    padding-left: .25rem;
+    font-size: .26rem;
+    color: #a6e5ff;
+    box-sizing: border-box;
+    background:none;
+    border:none;
+}
+
+
+.navbar .icon-search {
+    position: absolute;
+    width: .64rem;
+    height: .64rem;
+    line-height: .44rem;
+    top:-1px;
+    right: 0px;
+    font-size: .4rem;
+    color: #fff;
+    text-align:center;
+    background: none;
+    border:none;
+    outline: none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #a6e5ff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #a6e5ff;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #a6e5ff;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #a6e5ff;
+}
+
+.nav-wrap-left a.back {
+    height: 1rem;
+    width: .45rem;
+    line-height: 1rem;
+    padding: 0 .3rem
+}
+
+.qqbrand {
+    font-size: .24rem;
+    margin-top: .12rem;
+    display: none
+}
+
+#header_qq .qqbrand {
+    display: block
+}
+
+.navbar .nav-city {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-right: .2rem;
+    margin-left: .2rem;
+    font-size: .32rem
+}
+
+.nav-wrap-right a {
+    display: inline-block;
+    height: 100%;
+    line-height: 1rem;
+    text-align: center;
+    width: .94rem
+}
+
+.nav-wrap-right a:last-child {
+    margin-right: .04rem
+}
+
+.nav-btn {
+    display: inline-block;
+    font-size: .2rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.nav-btn .text-icon {
+    display: block;
+    margin: auto;
+    margin-bottom: .12rem;
+    font-size: .4rem
+}
+
+.navbar .nav-dropdown {
+    position: absolute;
+    right: .04rem;
+    top: 1.06rem;
+    width: 2rem;
+    background: #30b4f6;
+    opacity: .9;
+    z-index: 100;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .1s
+}
+
+.nav-dropdown.active {
+    height: 2.5rem
+}
+
+.nav-dropdown li {
+    height: .83rem;
+    line-height: .83rem;
+    border-bottom: 1px solid #21897d;
+    text-align: center
+}
+
+.nav-dropdown .text-icon {
+    font-size: .34rem
+}
+
+/****分类导航***/
+.list #category {
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    z-index: 999;
+}
+
+/***商品列表***/
+.list .section {
+    float: left;
+    width: 100%;
+    background-color: #fff;
+}
+
+.list .section.goods .section-hd {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+
+/*****/
+.list .section.goods .section-bd {
+    float: left;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.list .goods .section-bd li {
+    position: relative;
+    float: left;
+    width: 45%;
+    padding: 10px;
+    margin: 0px 3% 10px 3%;
+    border: 1px solid #eaeaea;
+}
+
+.list .goods .section-bd li:nth-child(2n) {
+    margin-left: 0px;
+}
+
+.list .goods .section-bd li .thumb img {
+
+}
+
+.list .goods .section-bd li .title {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .goods .section-bd li .price {
+    float: left;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #ff3300;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*****道教资讯******/
+.list .information .item {
+    width: 100%;
+    padding: 10px 0px 5px 0px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.list .information .item:last-child {
+    border-bottom: none;
+}
+
+.list .information .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.list .information .item .title {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .desc {
+    display: block;
+    height: 36px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .date {
+    display: block;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list .information .item .date .view {
+    float: left;
+}
+
+.list .information .item .date .time {
+    float: right;
+}
+
+/*****慈善救助******/
+.list .donation .section-bd {
+    padding: 0px;
+    background-color: #eaeaea;
+}
+
+.list .donation .item {
+    float: left;
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+
+.list .donation .item:last-child {
+    border-bottom: none;
+}
+
+.list .donation .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.list .donation .item .title {
+    display: block;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.donation .item .desc {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target label {
+    display: inline-block;
+    width: 33%;
+    margin: 0px;
+    font-weight: normal;
+}
+
+.donation .item .target label .r {
+    font-weight: bold;
+    color: #ff3300;
+}
+
+.donation .item .target label.t1 {
+    text-align: left;
+}
+
+.donation .item .target label.t2 {
+    text-align: center;
+}
+
+.donation .item .target label.t3 {
+    text-align: right;
+}
+
+.list .donation .item .prg {
+    float: left;
+    width: 100%;
+}
+
+.donation .item .prg .track {
+    float: left;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #eaeaea;
+}
+
+.donation .item .prg .fill {
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ff3300;
+}
+
+.donation .item .support {
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+
+}
+
+.donation .item .support .list {
+    float: left;
+    padding-left: 10px;
+    min-width: 200px;
+    max-width: 500px;
+}
+
+.donation .item .support .list img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: -13px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+}
+
+.donation .item .support .txt {
+    float: right;
+    width: 80px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+/*****结缘祖宫******/
+
+#pageContainer .place-btns {
+    float: left;
+    width: 100%;
+    height: 60px;
+    padding: 10px 15px 0px 15px;
+}
+
+#pageContainer .btns {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px 15px 0px 15px;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+}
+
+#pageContainer .btns.inner {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 60px;
+    padding: 10px 15px 0px 15px;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    background: none;
+    border-top: none;
+}
+
+#pageContainer .btns a {
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background-color: #f95200;
+    border-radius: 5px;
+}

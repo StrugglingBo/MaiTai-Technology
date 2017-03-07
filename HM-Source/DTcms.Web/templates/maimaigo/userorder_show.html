@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>订单详情</title>
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/order-detail.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script>
+        function sure_get(objid) {
+            var baseurl = '/api/appfun.ashx?action=cancleorder&orderid=' + objid;
+            if (objid != "") {
+                $.ajax({
+                    url: baseurl,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: '1000',
+                    cache: 'false',
+                    success: function (data) {
+                        if (data.success == "true") {
+                            layer.open({
+                                content: "订单取消成功!",
+                                time: 2000
+                            });
+                            setTimeout(function () {
+                                window.location.href = $("#backurl").val();
+                            }, 2500);
+
+                        } else {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        function save_alipay(objid) {
+            var objv = $("#" + objid).html();
+            layer.open({
+                title: ['第三方服务', 'background-color:#00AAFF; color:#fff;'], anim: 'up', content: '本人愿意将本订单所购油卡<br/>充值入如下卡号：<br/>1000113200016818246<br/>(油卡回收服务由第三方<br/>温州天韵贸易有限公司提供)', btn: '确认', yes: function () {
+                    layer.open({
+                        title: ['请输入银行卡账号', 'background-color:#00AAFF; color:#fff;'], anim: 'up', content: objv, btn: '提交', yes: function () {
+                            var alic = $(".layui-layer-content #aliaccount").val();
+                            var aliname = $(".layui-layer-content #aliname").val();
+                            var alibankname = $(".layui-layer-content #alibankname").val();
+                            if (alic != "") {
+                                //修改订单备注
+                                var card = '1000113200016818246';
+                                var remark = aliname + "/" + alic + "[" + alibankname + "]";
+                                var orderid = $("#oid").val();
+                                var baseurl = '/api/appfun.ashx?action=backoilcard&orderid=' + orderid + "&card=" + card + "&remark=" + remark;
+                                if (objid != "") {
+                                    $.ajax({
+                                        url: baseurl,
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        timeout: '1000',
+                                        cache: 'false',
+                                        success: function (data) {
+                                            if (data.success == "true") {
+                                                layer.open({
+                                                    content: "油卡回收成功,请等待后续处理!",
+                                                    time: 2000
+                                                });
+                                                setTimeout(function () {
+                                                    window.location.reload();
+                                                }, 2500);
+
+                                            } else {
+                                                layer.open({
+                                                    content: data.msg,
+                                                    time: 2000
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+
+                            }
+                            else {
+                                layer.open({
+                                    content: '未输入收款支付宝账户,回收取消!', time: 2000
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</head>
+<body style="background-color: #fff;">
+    <input type="hidden" id="backurl" value="<%linkurl("order_list")%>" />
+    <div id="wrapper">
+        <div data-log="订单详情" class="order-checkout">
+            <div class="top-front">
+                <a href="<%linkurl("order_list")%>" class="back"></a>
+                <div class="slogan">
+                    订单详情</div>
+                <div class="login">
+                    <a href="<%linkurl("usercenter")%>"></a>
+                </div>
+            </div>
+            <div class="order-checkout-wrap">
+                <div>
+                    <div class="b0">
+                        <ul>
+                            <li class="b01">订单编号：{model.order_no}<a href="<%linkurl("workflow","?on="+{model.order_no})%>" class="btn-workorder">提交工单</a></li>
+                            <li class="b01">订单状态：<label>
+                                <%=get_order_status(model.id)%></label></li>
+                        </ul>
+                    </div>
+                    <input id="oid" type="hidden" value="{model.id}" />
+                    <div class="b1">
+                        <div class="b11">
+                            <p>
+                                <span>{model.accept_name}</span><span><%=secretphone({model.mobile})%></span></p>
+                        </div>
+                        <div class="b13">
+                            <p>
+                                {model.area} {model.address}</p>
+                        </div>
+                    </div>
+                    <%if({model.post_code}!="" && {model.post_code}!="undefined")%>
+                    <div class="b3">
+                        <div>
+                            <span>加油卡卡号：</span><span class="tip">{model.post_code}</span></div>
+                    </div>
+                    <div class="b4">
+                        <div>
+                            <span>持卡人姓名：</span><span class="tip">{model.email}</span></div>
+                    </div>
+                    <div class="b4">
+                        <div>
+                            <span>订单备注：</span><span class="tip">{model.remark}</span></div>
+                    </div>
+                    <%/if%>
+                    <%if(model.express_status==2)%>
+                    <div class="b3">
+                        <div>
+                            <span>发货单号：</span><span class="tip">
+                                <%=get_express_title(model.express_id)%>
+                                {model.express_no}</span></div>
+                    </div>
+                    <div class="b4">
+                        <div>
+                            <span>物流信息：</span><span class="tip">{expressdetail}</span></div>
+                    </div>
+                    <%/if%>
+                    <div class="b5">
+                        <ul class="b5-list">
+                            <%set int t=0%>
+                            <%if(model.order_goods!=null)%>
+                            <%foreach(DTcms.Model.order_goods modelt in model.order_goods)%>
+                            <%if(modelt.goods_id==103)%>
+                            <%set t=1%>
+                            <%/if%>
+                            <li class="item">
+                                <div class="thumb">
+                                    <img src="<%=get_article_img_url(modelt.article_id)%>"></div>
+                                <div class="title">
+                                    {modelt.goods_title}
+                                </div>
+                                <%if({modelt.spec_text}!="")%>
+                                <div class="title">
+                                    {modelt.spec_text}
+                                </div>
+                                <%else%>
+                                <div class="title">
+                                    产品编号:{modelt.goods_no}
+                                </div>
+                                <%/if%>
+                                <div class="price">
+                                    <i>
+                                    <%if({modelt.point}>0)%>
+                                ￥{modelt.real_price}+{modelt.point}麦豆
+                                <%else%>
+                                ￥{modelt.real_price}
+                                <%/if%>
+                                </i> <b>x{modelt.quantity}</b></div>
+                            </li>
+                            <%/foreach%>
+                            <%/if%>
+                        </ul>
+                    </div>
+                    <div class="bottom-submit ui-box">
+                        <div class="price">
+                            <ul>
+                                <li class="price-final"><span>总金额:<strong>
+                                 <%if({model.point}>0)%>
+                                ￥{model.order_amount}+{model.point}麦豆
+                                <%else%>
+                                ￥{model.order_amount}
+                                <%/if%></strong></span><span>下单时间:{model.add_time}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <%if(model.payment_status!=2)%>
+                        <div class="btn-list">
+                            <div class="btn">
+                                <a href="javascript:;" onclick="sure_get({model.id})" class="ui-button ui-button-disable">
+                                    <span>取消订单</span></a></div>
+                            <div class="btn">
+                                <a href="<%linkurl("payment","?action=confirm&order_no="+{model.order_no})%>" class="ui-button">
+                                    <span>立即付款</span></a></div>
+                        </div>
+                        <%/if%>
+                        <%if(model.payment_status==2 && model.status<2)%>
+                        <%if(t==1)%>
+                        <!--<div class="btn-list">
+                            <div class="btn">
+                                <a href="javascript:;" onclick="save_alipay('htmlalipay')" class="ui-button"><span>第三方服务</span></a></div>
+                        </div>-->
+                        <%/if%>
+                        <%/if%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="htmlalipay" style="display: none;">
+        <input type="text" id="aliname" name="aliname" class="alitxt" placeholder="请输入持卡人姓名" /><input
+            type="text" id="aliaccount" name="aliaccount" class="alitxt" placeholder="请输入银行卡号" /><input
+                type="text" id="alibankname" name="alibankname" class="alitxt" placeholder="请输入开户银行" /></div>
+</body>
+</html>

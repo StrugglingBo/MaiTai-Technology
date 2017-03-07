@@ -1,0 +1,263 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body {
+    font-family: "微软雅黑", "Helvetica Neue", Hiragino, Sans, GB, W3, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100% !important;
+    background-color: #fff;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+ul, li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+a:link, a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #b70400;
+    text-decoration: none;
+}
+
+/********支付结果*********/
+.charge .charge-bd {
+    float: left;
+    width: 100%;
+}
+
+.charge-bd .order {
+    float: left;
+    width: 100%;
+    padding: 25px 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.charge-bd .order .main-tit {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    border-bottom: 1px dashed #eaeaea;
+}
+
+.order .main-tit h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.charge-bd .order .inner-box {
+    float: left;
+    width: 100%;
+}
+
+.order .inner-box .dl-list {
+    float: left;
+    width: 100%;
+    padding: 30px 0px 10px 0px;
+}
+
+.inner-box .dl-list .logo{
+    padding:50px 0px;
+    text-align: center;
+}
+
+.inner-box .dl-list .logo img{
+    width:40%;
+}
+
+.inner-box .dl-list .pay-info{
+    padding-left:50px;
+    margin:0px 10px;
+    margin-bottom:20px;
+    background: url("../images/finish-icon.png") 0px 0px no-repeat;
+    background-size: contain;
+}
+
+.inner-box .dl-list .pay-info .txt1{
+    display: block;
+    width:100%;
+    font-size:16px;
+}
+
+.inner-box .dl-list .pay-info .txt2{
+    display: block;
+    width:100%;
+    font-size:14px;
+}
+.inner-box .dl-list dl {
+    float: left;
+    width: 100%;
+    height: 30px;
+    margin:0px;
+    padding-left:20%;
+}
+
+.inner-box.payinfo dl {
+    height: 30px;
+}
+
+.inner-box .dl-list dt {
+    display:inline-block;
+    padding: 0px 10px;
+    font-size: 18px;
+    color: #666;
+    font-weight:normal;
+}
+
+.inner-box .dl-list dd {
+    display:inline-block;
+    font-size: 18px;
+    color: #ff0000;
+    font-weight:bold;
+}
+
+.inner-box .dl-list dd input[type="text"] {
+    border: none;
+}
+
+.paybottom .free-txt{
+    padding-bottom:10px;
+    text-align:center;
+    color:#ff3300;
+}
+
+.paybottom .order-txt{
+    padding-bottom:10px;
+    text-align:center;
+    color:#999;
+}
+.order-btn {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.order-btn .btn-confirm {
+    width: 150px;
+    height: 40px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: #ff3300;
+    line-height:25px;
+}
+
+.order .info {
+    position: relative;
+    margin: 0px auto;
+    width: 285px;
+    padding: 20px 0px;
+}
+
+.order .info .icon-success {
+    position: absolute;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    background: url(../images/finish-icon.png) top left no-repeat;
+    background-size: 50px 50px;
+}
+
+.order .info .icon-failed {
+    position: absolute;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    background: url(../images/failed-icon.png) top left no-repeat;
+    background-size: 50px 50px;
+}
+
+.order .info .tip {
+    float: left;
+    margin-left: 10px;
+}
+
+.order .info .tip .t1 {
+    float: left;
+    width: 100%;
+    height: 30px;
+    margin: 0px;
+    padding-left: 50px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fc6500;
+}
+
+.order .info .tip .t2 {
+    float: left;
+    width: 100%;
+    height: 25px;
+    margin: 0px;
+    padding-left: 50px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #666;
+}
+
+.order .info .tip .link-center {
+    display: inline-block;
+    width: 80px;
+    height: 25px;
+    margin: 0px 5px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #ff3300;
+}
+
+.order .info .tip .t3 {
+    float: left;
+    width: 100%;
+    height: 30px;
+    padding-left: 50px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #999;
+}
+
+.payexample {
+    border-top: 1px dashed #e3e3e3;
+    padding-top: 10px;
+    padding-bottom:30px;
+    float: left;
+}
+
+.paytitle {
+    text-align: center;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #ff0000;
+}
+
+.payexample img {
+    border: 1px solid #f9b1aa;
+}
+
+.paybottom {
+    position: fixed;
+    width: 100%;
+    padding: 10px 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: #fff;
+}

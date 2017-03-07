@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{site.seo_title}</title>
+    <meta name="keywords" content="{site.seo_keyword}" />
+    <meta name="description" content="{site.seo_description}" />
+    <link href="<%templateskin%>/css/animate.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/detail2.css" rel="stylesheet" type="text/css">
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.event.drag-1.5.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.touchSlider.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+    <!--主图滚动//-->
+    <script>
+        function gotourl(objurl) {
+            if (objurl != "") {
+                window.location.href = objurl;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="product-detail">
+            <div class="top-bar">
+                <a href="<%linkurl("shop_list",""+{model.category_id})%>" class="back"></a>
+                <div class="login">
+                    <a href="<%linkurl("usercenter")%>"></a>
+                </div>
+            </div>
+            <!--产品简介//-->
+            <div class="top-board">
+                <!--效果html开始-->
+                <div class="main_visual">
+                    <div class="flicking_con">
+                        <%if(model.albums!=null)%>
+                        <%set int i=0 %>
+                        <%foreach(DTcms.Model.article_albums modelt in model.albums)%>
+                        <%set i=i+1 %>
+                        <a href="javascript:;">{i}</a>
+                        <%/foreach%>
+                        <%/if%>
+                    </div>
+                    <div class="main_image">
+                        <ul>
+                            <%foreach(DTcms.Model.article_albums modeltimg in model.albums)%>
+                            <li><span style="background: url('{modeltimg.original_path}') center center no-repeat;
+                                background-size: contain;"></span></li>
+                            <%/foreach%>
+                        </ul>
+                        <a href="javascript:;" id="btn_prev"></a><a href="javascript:;" id="btn_next"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="title">
+                    {model.title}</div>
+                <div class="price">
+                    <span class="label">折扣率:</span><span class="value">{model.fields[prevalue]}%</span></div>
+                <div class="address" style="padding: 0px 15px;" onclick="gotourl('<%linkurl("shop_map",{model.id})%>')">
+                    <span class="label"></span><span class="value">{model.fields[sub_title]}</span></div>
+            </div>
+            <div class="infocontent">
+                <div class="content">
+                    {model.content}
+                </div>
+            </div>
+            <input id="commodityArticleId" type="hidden" value="{model.id}" />
+            <input id="commodityGoodsId" type="hidden" value="0" />
+            <!--底部按钮//-->
+            <div class="bottom-bar">
+                <div class="price-box">
+                    <input id="payamount" type="text" placeholder="请输入支付金额" onkeydown="checkNumber()">
+                </div>
+                <a href="javascript:;" onclick="gobuy()" class="buy-btn">立即支付</a></div>
+        </div>
+    </div>
+    <input type="hidden" id="pid" value="{model.id}" />
+    <input type="hidden" id="turl" value="<%linkurl("order_list")%>" />
+    <script type="text/javascript">
+        $(function () {
+
+            var $actionType = ""; //cart,order
+
+            $(".main_visual").hover(function () {
+                $("#btn_prev,#btn_next").fadeIn()
+            }, function () {
+                $("#btn_prev,#btn_next").fadeOut()
+            });
+
+            $dragBln = false;
+
+            $(".main_image").touchSlider({
+                flexible: true,
+                speed: 200,
+                btn_prev: $("#btn_prev"),
+                btn_next: $("#btn_next"),
+                paging: $(".flicking_con a"),
+                counter: function (e) {
+                    $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+                }
+            });
+
+            $(".main_image").bind("mousedown", function () {
+                $dragBln = false;
+            });
+
+            $(".main_image").bind("dragstart", function () {
+                $dragBln = true;
+            });
+
+            $(".main_image a").click(function () {
+                if ($dragBln) {
+                    return false;
+                }
+            });
+
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+
+            $(".main_visual").hover(function () {
+                clearInterval(timer);
+            }, function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+            $(".main_image").bind("touchstart", function () {
+                clearInterval(timer);
+            }).bind("touchend", function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+        });
+        //只允许输入数字
+        function checkNumber(e) {
+            var keynum = window.event ? e.keyCode : e.which;
+            if ((48 <= keynum && keynum <= 57) || keynum == 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function gobuy() {
+            var proid = $("#pid").val();
+            var pamount = $("#payamount").val();
+            if (pamount != "") {
+                var baseurl = '/tools/submit_ajax.ashx?action=shoporder_save&site=maimaigo&pid=' + proid + '&amount=' + pamount;
+                layer.open({
+                    content: "确认下单后,麦豆将扣除,是否确定?",
+                    btn: ['确认', '取消'],
+                    yes: function (index) {
+                        dobase(baseurl);
+                    },
+                    no: function (index) {
+                        b = 1;
+                    }
+                });
+            }
+            else {
+                layer.open({
+                    content: "请输入支付金额后下单支付!",
+                    time: 2000
+                });
+            }
+        }
+        function dobase(burl) {
+            $.ajax({
+                url: burl,
+                type: 'GET',
+                dataType: 'json',
+                timeout: '1000',
+                cache: 'false',
+                success: function (data) {
+                    if (data.status == "1") {
+                        var turl = data.url;
+                        if (turl != "") {
+                            if (typeof (data.url) == "undefined") {
+                                location.href = $("#turl").val();
+                            } else {
+                                location.href = data.url;
+                            }
+                        }
+                    } else {
+                        layer.open({
+                            content: data.msg,
+                            time: 2000
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

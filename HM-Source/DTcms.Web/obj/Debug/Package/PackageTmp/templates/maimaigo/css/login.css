@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: none;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#pageContainer{
+    position:relative;
+}
+
+.common-wrapper {
+    width: 100%;
+    position: relative;
+    max-width: 640px;
+    min-width: 320px;
+    overflow: hidden;
+    margin: 0 auto;
+    font-size: 16px;
+    padding-top:60px;
+    background-color: #f8f8f8;
+}
+
+.common-wrapper .main {
+    padding: 0px 15px 0;
+}
+
+.common-wrapper .main .logo {
+    width: 100%;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+}
+
+.common-wrapper .main .logo img{
+    width:45%;
+}
+
+.main .item, .main .item-captcha .input-info {
+    margin-bottom: 10px;
+}
+
+.main .item {
+    position: relative;
+    width: 100%;
+}
+
+.main .item .txt-input {
+    width: 100%;
+    height: 44px;
+    line-height: normal;
+    padding: 0;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    background: #fff;
+    font-family: '\5fae\8f6f\96c5\9ed1';
+    font-size: 16px;
+    color: #252525;
+    -webkit-appearance: none;
+}
+
+.main .item .txt-captcha, .main .item .txt-password, .main .item .txt-tel, .main .item .txt-username {
+    padding-left: 15px;
+}
+
+.main .item .txt-tel{
+
+    background-color:#fff;
+    background-size: 80% auto;
+}
+
+.main .item .txt-password{
+
+    background-color:#fff;
+    background-size: 80% auto;
+}
+
+.main .item-btns .btn-login, .main .item-btns .btn-next {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    border-radius: 3px;
+    background: #ff3300;
+    text-decoration: none;
+    line-height: 39px;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+    border: none;
+}
+
+.main .item-btns .btn-login2 {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    border-radius: 3px;
+    background: #fff;
+    text-decoration: none;
+    line-height: 39px;
+    text-align: center;
+    font-size: 17px;
+    color: #f15353;
+    border:1px solid #f15353;
+    cursor:pointer;
+}
+
+.main .item-btns .btn-disabled {
+    background: #e2e2e2;
+    cursor: default;
+    color: #bdbdbd;
+}
+
+.main .item-login-option {
+    padding-top: 20px;
+    margin-bottom: 34px;
+    font-size: 14px;
+}
+
+.main .item-login-option .register-free {
+    float: left;
+    width: 50%;
+}
+
+.main .item-login-option .register-free a, .main .item-login-option .retrieve-password a {
+    color: #686868;
+    font-size: 15px;
+    text-decoration: underline;
+    height: 14px;
+    display: inline-block;
+}
+
+.main .item-login-option .retrieve-password {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+/**注册**/
+.main .item-captcha #captcha-img {
+    position: absolute;
+    right: 0;
+    top: 9px;
+    width: 79px;
+    height: 25px;
+    padding-left: 7px;
+    border-left: 1px solid #d7d7d7;
+}
+
+.main .item .txt-phone {
+    padding-left: 15px;
+    width: 53.31034482758621%;
+}
+
+.main .item-phone .btn-retransmit-disabled {
+    box-shadow: none;
+    border: 1px solid #e2e2e2;
+    background: #e2e2e2;
+    cursor: default;
+    color: #bdbdbd;
+}
+
+.main .item-phone .btn-retransmit {
+    float: right;
+    overflow: hidden;
+    width: 44.13793103448276%;
+    height: 42px;
+    border: 1px solid #f15353;
+    border-radius: 3px;
+    background: #fff;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #f15353;
+}
+
+.main .item-sms-captcha .txt-sms-captcha {
+    padding-left: 15px;
+}
+
+.main .item-sms-captcha .err-tips {
+    margin: 13px 0 24px;
+    font-size: 13px;
+    color: #848689;
+}
+
+.main .item-sms-captcha .err-tips a {
+    color: #f25454;
+    display: inline-block;
+    height: 13px;
+    text-decoration: underline;
+}
+.mask{
+            display: none;
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0px;
+            left:0px;
+            background-color:#000;
+            z-index:99998;
+            filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+            -moz-opacity:0.50; /*支持 FireFox 浏览器*/
+            opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+        }
+        .agreement{
+            display: none;
+            position:absolute;
+            top:5%;
+            left:5%;
+            right:5%;
+            bottom:5%;
+            width:90%;
+            height:90%;
+            padding:25px 10px 10px 10px;
+            line-height:25px;
+            overflow:hidden;
+            background-color:#fff;
+            z-index: 99999;
+            -webkit-animation:bounceIn 1s .2s ease both;
+            -moz-animation:bounceIn 1s .2s ease both;
+        }
+
+        .agreement .content{
+            width:100%;
+            height:100%;
+            line-height:25px;
+            overflow:scroll;
+        }
+
+        .close{
+            position:fixed;
+            top:10px;
+            right:10px;
+            font-family: arial;
+            font-size:16px;
+            width:20px;
+            height:20px;
+            color:#333;
+            text-align: center;
+            filter: alpha(opacity=80);
+            opacity: .8;
+        }

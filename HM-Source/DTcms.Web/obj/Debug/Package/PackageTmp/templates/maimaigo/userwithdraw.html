@@ -1,0 +1,328 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>我要提现-麦买购</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/usercenter.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script src="<%templateskin%>/js/echarts.min.js"></script>
+    <script>
+        $(function () {
+            //获取我的业绩指数
+            var baseurl = '/api/appfun.ashx?action=getmypre&uid=' + $("#uid").val();
+            $.ajax({
+                url: baseurl,
+                type: 'GET',
+                dataType: 'json',
+                timeout: '1000',
+                cache: 'false',
+                success: function (data) {
+                    if (data.success == "true") {
+                        $("#mypre").val(data.mypre);
+                        $("#pre").val(data.mypre);
+                        $("#txtmpre").html("我的业绩指数:" + data.mypre);
+                    }
+                }
+            });
+
+            //发送短信
+            $("#btnSendcode").click(function () {
+                //检查是否输入手机号码
+                if ($("#txtMobile").val() == "") {
+                    $.dialog.alert("对不起，请先输入手机号码！");
+                    return false;
+                }
+                //设置按钮状态
+                $("#txtCode").prop("disabled", false);
+                $("#btnSendcode").prop("disabled", true);
+                $.ajax({
+                    type: "POST",
+                    url: $("#btnSendcode").attr("url"),
+                    dataType: "json",
+                    data: {
+                        "mobile": $("#txtMobile").val()
+                    },
+                    timeout: 20000,
+                    success: function (data, textStatus) {
+                        if (data.status == 1) {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        } else {
+                            $("#btnSendcode").prop("disabled", false);
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $("#btnSendcode").prop("disabled", false);
+                        layer.open({
+                            content: "状态：" + textStatus + "；出错提示：" + errorThrown,
+                            time: 2000
+                        });
+                    }
+                });
+            });
+            var myChart = echarts.init(document.getElementById('main'));
+            option = {
+                toolbox: {
+                    feature: {
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                series: [
+                    {
+                        name: '总业绩指数',
+                        type: 'gauge',
+                        min: 0.0,
+                        max: 1.5,
+                        data: [{ value: 1.0, name: ''}]
+                    }
+                ]
+            };
+            // 为echarts对象加载数据 
+            myChart.setOption(option);
+            setInterval(function () {
+                var tpre = $("#totalpre").val();
+                var mydate = new Date();
+                if (mydate.getDay() == 3 && mydate.getHours() >= 6 && mydate.getHours() < 21) {
+                    var baseurl = '/api/appfun.ashx?action=gettotalpre';
+                    $.ajax({
+                        url: baseurl,
+                        type: 'GET',
+                        dataType: 'json',
+                        timeout: '1000',
+                        cache: 'false',
+                        success: function (data) {
+                            if (data.success == "true") {
+                                tpre = data.totalpre;
+                                $("#totalpre").val(tpre);
+                                option.series[0].data[0].value = tpre;
+                                myChart.setOption(option, true);
+                            }
+                        }
+                    });
+                }
+                //changetruemoney();
+            }, 5000);
+
+        });
+        function changetruemoney() {
+            var tmoney = $("#txtamount").val();
+            if (tmoney != "") {
+                var mpre = $("#mypre").val();
+                var tpre = $("#totalpre").val();
+                var p = $("#pre").val();
+                $("#trueamount").val(parseInt(tmoney * 1 * mpre * tpre * (1 - p)) + "=" + tmoney + "*" + mpre + "*" + tpre + "*" + (1 - p));
+                $("#hftamount").val(parseInt(tmoney * 1 * mpre * tpre * (1 - p)));
+            }
+        }
+        function save_applor() {
+            var mydate = new Date();
+            var gid = $("#gid").val();
+            var t = 0;
+            if (gid == 3) {
+                var d = mydate.getDate();
+                if (d * 1 == 15 && mydate.getHours() >= 6 && mydate.getHours() < 21) {
+                    t = 1;
+                }
+            }
+            else {
+                if (mydate.getDay() == 3 && mydate.getHours() >= 6 && mydate.getHours() < 21) {
+                    t = 1;
+                }
+            }
+            if (t == 1) {
+                var cp = $("#cpoint").val();
+                var uid = $("#uid").val();
+                var amount = $("#txtamount").val();
+                var code = $("#txtCode").val();
+                if (amount * 1 <= cp * 1 && isNumberBy100(amount)) {
+                    var pre = $("#txtpre").val();
+                    var rechargeno = $("#payment").val();
+                    if (rechargeno != "" && code != "") {
+                        var baseurl = '/api/appfun.ashx?action=outmoney_save&uid=' + uid + '&amount=' + amount + '&pre=' + pre + '&rechargeno=' + rechargeno + "&code=" + code + "&mypre=" + $("#mypre").val();
+                        $.ajax({
+                            url: baseurl,
+                            type: 'GET',
+                            dataType: 'json',
+                            timeout: '1000',
+                            cache: 'false',
+                            success: function (data) {
+                                if (data.success == "true") {
+                                    var turl = data.url;
+                                    if (turl != "") {
+                                        if (typeof (data.url) == "undefined") {
+                                            location.href = $("#turl").val();
+                                        } else {
+                                            location.href = data.url;
+                                        }
+                                    }
+                                } else {
+                                    layer.open({
+                                        content: data.msg,
+                                        time: 2000
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    if (rechargeno == "") {
+                        layer.open({
+                            content: "未绑定银行卡，请绑定后操作！",
+                            time: 2000
+                        });
+                    }
+                    else {
+                        if (code == "") {
+                            layer.open({
+                                content: "未输入手机验证码！",
+                                time: 2000
+                            });
+                        }
+                    }
+                }
+                else {
+                    layer.open({
+                        content: "提现积分必须小于等于可提现积分,且为100的整数倍!",
+                        time: 2000
+                    });
+                }
+            }
+            else {
+                var tips = "会员每周三 6:00-21:00 <br/> 可以提交提现申请!"
+                if (gid == 3) {
+                    tips = "代理商每月15好可提交提现申请!";
+                }
+                layer.open({
+                    content: tips,
+                    time: 2000
+                });
+            }
+        }
+        function isNumberBy100(ssn) {
+            var re = /^[0-9]*[0-9]$/i;
+            if (re.test(ssn) && ssn % 100 === 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        function checkNumber(e) {
+            var keynum = window.event ? e.keyCode : e.which;
+            if ((48 <= keynum && keynum <= 57) || (96 <= keynum && keynum <= 105) || keynum == 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function setpre() {
+            var t = $("#txtamount").val();
+            var p = $("#pre").val();
+            $("#txtpre").val(t * p);
+            //changetruemoney();
+        }
+    </script>
+</head>
+<body>
+<input id="totalpre" type="hidden" value="1.0" />
+<input id="mypre" type="hidden" value="0" />
+<input id="hftamount" type="hidden" value="0" />
+    <div id="pageContainer">
+        <div class="top-bar">
+            <a href="<%linkurl("usercenter")%>" class="back"></a><span class="title">我要提现</span>
+        </div>
+        <div class="common-wrapper">
+            <div id="main" style="height:270px;">
+            </div>
+            <div style="width:100%;text-align:center;margin-top:-70px;"><font>总业绩指数</font></div>
+            <div id="" style="width:100%;text-align:center;"><font id="txtmpre" color="red" style="font-weight:bold; font-size:20px;border:2px dotted red;">我的业绩指数:0.0</font></div>
+            <div class="uc-form">
+                <%if({userinfo}!=null) %>
+                <div class="item item-score">
+                    <span class="s1">可提麦豆：<i style="padding-left: 20px;">{userModel.point}</i></span></div>
+                <div class="item item-input">
+                    <label>
+                        提现麦豆：</label><input id="txtamount" class="txt-input" type="num" placeholder="请输入需要提现的麦豆"
+                            onkeydown="return checkNumber(event);" onchange="setpre()">
+                </div>
+                <div class="item item-input">
+                    <label>
+                        提现金额：</label><input id="trueamount" class="txt-input" type="text" value="提现麦豆*我的业绩指数*总业绩指数" readonly="readonly">
+                </div>
+                <div class="item item-input" style="display:none;">
+                    <label>
+                        手续费：</label><input id="txtpre" class="txt-input" type="text" value="0" readonly="readonly">
+                </div>
+                <!-------付款方式选择开始//------>
+                <div class="item item-payment" style="display:none;">
+                    <ul>
+                        <%if({userinfo.cardno}!="")%>
+                        <li class="selected">银行卡：{userinfo.cardno}</li>
+                        <input id="payment" name="payment" type="hidden" value="银行卡：{userinfo.cardno}" />
+                        <%else%>
+                        <input id="payment" name="payment" type="hidden" value="" />
+                        <%/if%>
+                    </ul>
+                </div>
+                <div class="item item-input">
+                    <input type="hidden" id="txtMobile" name="txtMobile" value="{userModel.mobile}" />
+                    <label>
+                        验证码：</label><input id="txtCode" name="txtCode" class="txt-code" type="text" placeholder="输入手机验证码"><a
+                            id="btnSendcode" href="javascript:;" url="{config.webpath}tools/submit_ajax.ashx?action=user_verify_smscode&site={site.build_path}"
+                            class="btn-getcode">获取验证码</a>
+                </div>
+                <script>
+                    $("#payment").val($(".item-payment li.selected").text());
+
+                    $(".item-payment li").click(function () {
+                        $(".item-payment li").removeClass("selected");
+                        $(this).addClass("selected");
+                        $("#payment").val($(this).text());
+                    });
+                </script>
+                <!-----付款方式结束 //----->
+                <div class="item item-btns">
+                    <a class="btn-confirm" href="javascript:;" onclick="save_applor()">确定申请</a>
+                </div>
+                <div class="item item-label">
+                    <b>提示：</b>提现T+3工作日到账，如遇节假日延后到账。会员只允许每周三提交提现申请,代理商允许每月15号提交提现申请,<font color="red">总业绩指数以晚上9点为准!</font></div>
+                <%else%>
+                <div class="item item-label">
+                    <b>提示：</b><br />
+                    需提前绑定支付宝账号或银行卡号</div>
+                <%/if%>
+                <input type="hidden" id="uid" value="{userModel.id}" />
+                <input type="hidden" id="cpoint" value="{userModel.point}" />
+                <input type="hidden" id="turl" value="<%linkurl("userrecord")%>" />
+                <input type="hidden" id="pre" value="{pay.poundage_amount}" />
+                <input type="hidden" id="gid" value="{userModel.group_id}" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

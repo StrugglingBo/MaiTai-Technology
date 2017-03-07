@@ -1,0 +1,90 @@
+<!doctype html>
+<html style="font-size:60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>提现记录-麦买购</title>
+
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/usercenter.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script src="<%templateskin%>/js/recoderfresh.js"></script>
+    <script>
+        function cancel(objid) {
+            if (objid != "") {
+                var baseurl = '/api/appfun.ashx?action=outmoney_cancel&id=' + objid;
+                $.ajax({
+                    url: baseurl,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: '1000',
+                    cache: 'false',
+                    success: function (data) {
+                        if (data.success == "true") {
+                            var turl = data.url;
+                            if (turl != "") {
+                                if (typeof (data.url) == "undefined") {
+                                    location.href = $("#turl").val();
+                                } else {
+                                    location.href = data.url;
+                                }
+                            }
+                        } else {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div id="pageContainer">
+    <div class="top-bar">
+        <a href="<%linkurl("usercenter")%>" class="back"></a>
+        <span class="title">提现记录</span>
+        <div class="refresh">
+                    <a href="javascript:window.location.reload();"></a>
+                </div>
+    </div>
+    <div class="common-wrapper">
+        <div class="uc-wd-record">
+            <div class="score"><span>我的麦豆：<i>{userModel.point}</i></span><span>已提现麦豆：<i>{userModel.exp}</i></span></div>
+            <ul class="th">
+                <li>提现时间</li>
+                <li>提现麦豆</li>
+                <li>实际金额</li>
+                <li>状态</li>
+            </ul>
+            <div id="thelist"></div>
+             <div id="pullUp">
+                <span class="pullUpLabel"></span>
+            </div>
+            <input type="hidden" id="uid" value="{userModel.id}" />
+        </div>
+    </div>
+    <input type="hidden" id="turl" value="<%linkurl("userrecord")%>" />
+</div>
+</body>
+</html>

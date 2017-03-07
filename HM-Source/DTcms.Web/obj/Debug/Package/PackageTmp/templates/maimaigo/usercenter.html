@@ -1,0 +1,134 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>用户中心-麦买购</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/usercenter.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+</head>
+<body class="uc-home">
+    <div id="pageContainer">
+        <div class="uc">
+            <div class="account">
+                <div class="account-info">
+                    <div class="thumb">
+                        <img src="/upload/avatar.png" alt="求真像" />
+                    </div>
+                    <div class="info">
+                        <p class="name">
+                            <%=secretphone({userModel.user_name})%><span class="title">
+                                <%if({userModel.group_id}==2)%>
+                                <img src="<%templateskin%>/images/vip.png" />
+                                <%/if%>
+                                <%if({userModel.group_id}==3)%>
+                                代理商
+                                <%/if%>
+                            </span>
+                        </p>
+                        <p class="time">
+                            加入时间：{userModel.reg_time}</p>
+                    </div>
+                </div>
+                <div class="account_cash">
+                    <span class="cash">
+                        <p>
+                            今日麦豆</p>
+                        <p>
+                            <label>
+                                {userModel.amount}</label>
+                        </p>
+                    </span><span class="cash"><a href="<%linkurl("userscorerecord")%>">
+                        <p>
+                            可用麦豆</p>
+                        <p>
+                            <label>
+                                {userModel.point}</label>
+                        </p>
+                        <i></i></a></span>
+                </div>
+            </div>
+            <div class="section">
+                <ul>
+                    <li><a href="<%linkurl("userbankcard")%>"><i class="ico-1"></i><b>我的银行卡</b><em></em></a></li>
+                    <%if({userModel.group_id}!=3)%>
+                    <li><a href="<%linkurl("usertruename")%>"><i class="ico-2"></i><b>实名认证</b><em></em></a></li>
+                    <li style="display:none;"><a href="<%linkurl("useralipay")%>"><i class="ico-3"></i><b>提现支付宝账号</b><em></em></a></li>
+                    <%/if%>
+                </ul>
+            </div>
+            <div class="section">
+                <ul>
+                    <li><a href="<%linkurl("qrcode")%>"><i class="ico-6"></i><b>我的二维码</b><em></em></a></li>
+                    <%if({userModel.group_id}!=3)%>
+                    <%if(userModel.qq=="1")%>
+                    <li><a href="javascript:;" onclick="showsub()"><i class="ico-4"></i><b>我的VIP</b><em></em></a></li>
+                    <li id="vipsub" class="sub" style="display: none;">
+                        <p>
+                            VIP到期时间：{userModel.birthday}</p>
+                        <p>
+                            归属中心：{userModel.area}</p>
+                    </li>
+                    <%/if%>
+                    <%/if%>
+                    <li>
+                        <%if({userModel.group_id}==3)%><a href="<%linkurl("usergroup","3")%>"><i class="ico-5"></i><b>区域内会员({groupstr})<%else%><a
+                            href="<%linkurl("usergroup")%>"><i class="ico-5"></i><b>我的团队<%/if%></b><em></em></a></li>
+                    <%if({userModel.group_id}==3)%>
+                    <li id="Li1" class="sub">
+                        <p>
+                            代理区域：{userModel.area}</p>
+                    </li>
+                    <%/if%>
+                </ul>
+            </div>
+            <div class="section">
+                <ul>
+                    <li><a href="<%linkurl("userrecord")%>"><i class="ico-6"></i><b>提现记录</b><em></em></a></li>
+                    <li><a href="<%linkurl("useraddress")%>"><i class="ico-7"></i><b>我的收货地址</b><em></em></a></li>
+                    <li><a href="<%linkurl("userpassword")%>"><i class="ico-8"></i><b>修改密码</b><em></em></a></li>
+                    <li><a href="<%linkurl("workflow")%>"><i class="ico-9"></i><b>提交工单</b><em></em></a></li>
+                </ul>
+            </div>
+            <div class="withdraw">
+                <a href="<%linkurl("userwithdraw")%>">我要提现</a></div>
+            <div class="logout">
+                <a href="<%linkurl("usercenter","?action=exit")%>">退出登录</a></div>
+        </div>
+        <!--导航//-->
+        <div class="bottom-bar">
+            <a href="<%linkurl("index")%>" class="cat1"><i></i><span>首页</span></a><a href="<%linkurl("integral_list",0)%>"
+                    class="cat5"><i></i><span>麦豆换购</span></a><a
+                    href="<%linkurl("shop")%>" class="cat2"><i></i><span>本地生活</span></a><a href="<%linkurl("order_list")%>" class="cat3"><i></i><span>我的订单</span></a><a href="<%linkurl("usercenter")%>"
+                        class="cat4 active"><i></i><span>会员中心</span></a></div>
+    </div>
+    <script>
+        function showsub() {
+            var s = $("#vipsub").attr("style");
+            if (s == "") {
+                $("#vipsub").hide();
+            }
+            else {
+                $("#vipsub").show();
+                $("#vipsub").attr("style", "");
+            }
+        }
+    </script>
+</body>
+</html>

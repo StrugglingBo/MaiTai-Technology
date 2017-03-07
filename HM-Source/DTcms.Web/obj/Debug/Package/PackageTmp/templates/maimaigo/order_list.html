@@ -1,0 +1,86 @@
+<!doctype html>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>订单列表</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/order_list.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script src="<%templateskin%>/js/orderfresh.js"></script>
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script>
+        function sure_get(objid) {
+            var baseurl = '/api/appfun.ashx?action=sureorder&orderid=' + objid;
+            if (objid != "") {
+                $.ajax({
+                    url: baseurl,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: '1000',
+                    cache: 'false',
+                    success: function (data) {
+                        if (data.success == "true") {
+                            layer.open({
+                                content: "订单确认成功!",
+                                time: 2000
+                            });
+                            window.location.reload();
+                        } else {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="order-list">
+            <div class="top-front">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="<%templateskin%>/images/logo-top.png"></a></div>
+                <div class="slogan">
+                    我的订单</div>
+                <div class="refresh">
+                    <a href="javascript:window.location.reload();"></a>
+                </div>
+            </div>
+            <ul id="thelist">
+            </ul>
+            <div id="pullUp">
+                <span class="pullUpLabel"></span>
+            </div>
+        </div>
+        <input type="hidden" id="uid" value="{userModel.id}" />
+        <!--导航//-->
+        <div class="bottom-bar">
+            <a href="<%linkurl("index")%>" class="cat1"><i></i><span>首页</span></a><a href="<%linkurl("integral_list",0)%>"
+                    class="cat5"><i></i><span>麦豆换购</span></a><a
+                    href="<%linkurl("shop")%>" class="cat2"><i></i><span>本地生活</span></a><a href="<%linkurl("order_list")%>"
+                class="cat3 active"><i></i><span>我的订单</span></a><a
+                    href="<%linkurl("usercenter")%>" class="cat4"><i></i><span>会员中心</span></a></div>
+    </div>
+</body>
+</html>

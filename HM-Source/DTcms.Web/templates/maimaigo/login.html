@@ -1,0 +1,68 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>麦买购</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/login.css" rel="stylesheet" type="text/css">
+    <link href="{config.webpath}scripts/artdialog/ui-dialog.css" rel="stylesheet" type="text/css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script src="<%templateskin%>/js/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{config.webpath}scripts/artdialog/dialog-plus-min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/login-validate.js"></script>
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="top-bar">
+            <a href="<%linkurl("index")%>" class="back"></a><span class="title">登录中心</span>
+        </div>
+        <form id="loginform" name="loginform" url="{config.webpath}tools/submit_ajax.ashx?action=user_login&site={site.build_path}">
+        <div class="common-wrapper">
+            <div class="main">
+                <div class="logo">
+                    <img src="<%templateskin%>/images/logo2.png"></div>
+                <div class="item item-username">
+                    <input id="txtUserName" name="txtUserName" class="txt-input txt-tel" type="text"
+                        placeholder="请输入手机号">
+                </div>
+                <div class="item item-password">
+                    <input id="txtPassword" name="txtPassword" class="txt-input txt-password" type="password"
+                        autocomplete="off" placeholder="请输入密码">
+                </div>
+                <div class="item item-btns">
+                    <input id="btnSubmit" name="btnSubmit" class="btn-login" type="submit" value="登 录">
+                </div>
+                <div class="item item-btns">
+                    <a class="btn-login2" href="<%linkurl("register")%>">注册</a>
+                </div>
+                <div class="item item-login-option">
+                    <span class="retrieve-password"><a class="findPwd" href="<%linkurl("findpwd")%>">忘记密码?</a> </span>
+                </div>
+                <div class="item item-tips">
+                    <div id="msgtips" class="err-msg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input id="turl" name="turl" type="hidden" value="{turl}" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>麦买购</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/login.css" rel="stylesheet" type="text/css">
+    <link href="{config.webpath}scripts/artdialog/ui-dialog.css" rel="stylesheet" type="text/css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="{config.webpath}scripts/artdialog/dialog-plus-min.js"></script>
+    <script src="<%templateskin%>/js/common.js"></script>
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="top-bar">
+            <a href="<%linkurl("index")%>" class="back"></a><span class="title">用户注册</span>
+        </div>
+        <%if(action=="")%>
+        <script type="text/javascript" src="{config.webpath}scripts/jquery/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/register_validate.js"></script>
+        <form id="regform" name="regform" url="{config.webpath}tools/submit_ajax.ashx?action=user_repwdbymobile&site={site.build_path}">
+        <div class="common-wrapper">
+            <div class="main">
+                <div class="item item-tips" style="display: none;">
+                    <div class="err-msg">
+                    </div>
+                </div>
+                <div class="item item-username">
+                    <input id="txtMobile" name="txtMobile" type="tel" class="txt-input txt-tel" type="text"
+                        autocomplete="off" placeholder="手机号码" ajaxurl="{config.webpath}tools/submit_ajax.ashx?action=validate_username">
+                </div>
+                <%if(uconfig.regstatus!=2)%>
+                <div class="item item-captcha" style="display: ">
+                    <div class="input-info">
+                        <input id="txtCode" name="txtCode" class="txt-input txt-captcha" type="text" autocomplete="off"
+                            placeholder="请输入图片验证码">
+                        <span id="captcha-img">
+                            <img src="{config.webpath}tools/verify_code.ashx" width="63" height="25" alt=""></span>
+                    </div>
+                </div>
+                <%else%>
+                <div class="item item-phone">
+                    <input id="txtCode" name="txtCode" class="txt-input txt-phone" type="tel" placeholder="请输入短信验证码">
+                    <a id="btnSendcode" href="javascript:;" onclick="sendSMS(this,'#txtMobile','{config.webpath}tools/submit_ajax.ashx?action=user_verify_smscode&site={site.build_path}');"
+                        class="btn-retransmit btn-retransmit-disabled">获取短信验证码</a>
+                </div>
+                <%/if%>
+                <div class="item item-btns">
+                    <input id="btnSubmit" name="btnSubmit" type="submit" value="立即修改" class="btn-login" />
+                </div>
+                <div class="item item-btns">
+                    <a href="<%linkurl("index")%>" class="btn-login2">返回首页</a>
+                </div>
+            </div>
+        </div>
+        </form>
+        <%/if%>
+        <%if(action=="close")%>
+        <!--关闭会员注册-->
+        <div class="wrap-box">
+            <h2>
+                系统暂停注册会员</h2>
+            <div class="tip">
+                <span class="icon info"></span>
+                <p>
+                    如对您造成不便，我们深感遗憾！</p>
+                <p>
+                    如需了解开放时间，请联系本站客服或管理员。</p>
+                <p>
+                    您可以点击这里返回 <a href="<%linkurl("index")%>" data-ignore="true">网站首页</a></p>
+            </div>
+        </div>
+        <!--/关闭会员注册-->
+        <%/if%>
+        <%if(action=="succeed")%>
+        <!--注册成功-->
+        <div class="wrap-box">
+            <h2>
+                恭喜您，注册成功</h2>
+            <div class="tip">
+                <span class="icon check"></span>
+                <p>
+                    恭喜您{username}成为本站会员！</p>
+                <p>
+                    从现在起，你可以享受更多的会员服务。</p>
+                <p>
+                    点击这里返回 <a href="<%linkurl("index")%>" data-ignore="true">首页</a> 或 <a href="<%linkurl("login")%>"
+                        data-ignore="true">登录</a> 会员中心吧！</p>
+            </div>
+        </div>
+        <!--/注册成功-->
+        <%/if%>
+        {config.webcountcode}
+    </div>
+</body>
+</html>

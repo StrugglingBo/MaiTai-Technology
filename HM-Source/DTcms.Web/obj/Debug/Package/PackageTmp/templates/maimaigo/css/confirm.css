@@ -1,0 +1,443 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    font-family:"微软雅黑", "Helvetica Neue",Hiragino, Sans, GB, W3, Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%!important;
+    background-color:#fff;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.fl {
+    float: left;
+}
+
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+ul,li{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+}
+
+a:link,a:visited{
+    color:#333;
+    text-decoration:none;
+}
+
+a:hover,a:active{
+    color:#b70400;
+    text-decoration:none;
+}
+
+#pageContainer{
+    position: relative;
+    width:100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding-bottom: 160px;
+}
+.no-data{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    float: left;
+    background-color: #fff;
+}
+
+img {
+    width: 100%;
+    border: none;
+}
+
+
+/*****在筹项目详情******/
+
+.confirm-list{
+    float:left;
+    width:100%;
+    padding:50px 10px 150px 10px;
+}
+
+.confirm-list ul{
+    float:left;
+    width:100%;
+}
+
+.confirm-list ul li.item{
+    float:left;
+    width:100%;
+    padding:0px 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.confirm-list .item .option{
+    position: relative;
+    float:left;
+    width:100%;
+    height:50px;
+    line-height: 50px;
+}
+
+.confirm-list .item .option .label{
+    position: absolute;
+    display:block;
+    width:80px;
+    height:26px;
+    top:12px;
+    line-height: 26px;
+    font-size:14px;
+}
+
+.confirm-list .item .option .value{
+    float:left;
+    width:100%;
+    padding-left:80px;
+    padding-right:10px;
+    color:#999;
+}
+
+.confirm-list .item .option .add{
+    position: absolute;
+    display: block;
+    top:15px;
+    right:12px;
+    width:20px;
+    height:20px;
+    line-height: 18px;
+    text-align: center;
+    font-size:18px;
+    color:#fff;
+    border-radius: 10px;
+    background-color:#33ccfe;
+
+}
+
+.confirm-list .item .option .icon{
+    position: absolute;
+    display:block;
+    width:20px;
+    height:30px;
+    top:12px;
+    right:0px;
+    background: url(../images/arrow.png) 0px 0px no-repeat;
+    background-size: 20px auto;
+}
+
+.confirm-list .item .sub-option{
+    float:left;
+    width:100%;
+    padding:5px 0px;
+    line-height: 50px;
+    border-top:1px dashed #eaeaea;
+}
+
+.confirm-list .item .option.address input[type="text"]{
+    float:left;
+    width:100%;
+    height:30px;
+    padding:5px;
+    margin-top: 10px;
+    line-height: 30px;
+    font-size:14px;
+    color:#333;
+    border:none;
+    outline: none;
+}
+
+/**收货人*/
+.confirm-list .item .option.receiver input[type="text"]{
+    float:left;
+    width:100%;
+    height:30px;
+    padding:5px;
+    margin-top: 10px;
+    line-height: 30px;
+    font-size:14px;
+    color:#333;
+    border:none;
+}
+
+
+/**货品清单*/
+.confirm-list .item .sub-option.product{
+    position: relative;
+    height:95px;
+}
+
+.confirm-list .item .sub-option.product .thumb{
+    position: absolute;
+    width:75px;
+    height:75px;
+    padding:5px;
+    margin:5px;
+    background-color:#fff;
+    border:2px solid #eaeaea;
+}
+
+.confirm-list .item .sub-option.product .title{
+    float:left;
+    width:100%;
+    height:25px;
+    line-height: 25px;
+    font-size:14px;
+    color:#666;
+    padding-left:95px;
+    overflow: hidden;
+}
+
+
+.confirm-list .item .sub-option.product .price{
+    float:left;
+    width:100%;
+    height:30px;
+    line-height: 30px;
+    font-size:14px;
+    color:#999999;
+    padding-left:95px;
+}
+
+.confirm-list .item .sub-option.product .thumb img{
+    width:100%;
+    height:100%;
+}
+.confirm-list .item .sub-option.product .price i{
+    float:left;
+    width:70%;
+    font-style: normal;
+}
+
+.confirm-list .item .sub-option.product .price b{
+    float:right;
+    font-style:normal;
+    font-weight:normal;
+}
+
+/****类型选择*****/
+.confirm-list .item.oilcard .option,.confirm-list .item.goods .option {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.confirm-list .item.oilcard .option .label,.confirm-list .item.goods .option .label{
+    position: relative;
+    top:0px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.confirm-list .item.oilcard .sub-option,.confirm-list .item.goods .sub-option {
+    line-height: 25px;
+}
+
+.confirm-list .item.oilcard .sub-option a,.confirm-list .item.goods .sub-option a{
+    display:inline-block;
+    padding:2px 5px;
+    margin:2px 2px;
+    font-size:14px;
+    border:2px solid #eaeaea;
+}
+
+.confirm-list .item.oilcard .sub-option a:hover,.confirm-list .item.oilcard .sub-option a.active,.confirm-list .item.goods .sub-option a:hover,.confirm-list .item.goods .sub-option a.active{
+    color:#ff3300;
+    border:2px solid #ff3300;
+}
+
+
+/**支付方式*/
+.confirm-list .item .sub-option.payment i{
+    float:left;
+    width:70%;
+    height:40px;
+    line-height: 40px;
+    font-size:14px;
+    font-style: normal;
+    color:#999999;
+}
+
+.confirm-list .item .sub-option.payment b{
+    float:right;
+    width:30px;
+    height:40px;
+    line-height: 40px;
+    background: url("../images/check.png") 5px 10px no-repeat;
+    background-size: 20px auto;
+}
+
+/**发票*/
+.confirm-list .item.bill .value{
+    font-size:12px;
+    text-align: right;
+}
+
+.confirm-list .item.bill .sub-option{
+    display: none;
+    position: relative;
+}
+
+.confirm-list .item.bill .sub-option li{
+    float:left;
+    width:100%;
+    height:35px;
+    line-height: 35px;
+    font-size:14px;
+    color:#999;
+}
+
+.confirm-list .item.bill .sub-option input[type="text"]{
+    float:left;
+    width:100%;
+    height:30px;
+    padding:5px;
+    line-height: 30px;
+    font-size:16px;
+    color:#999999;
+    border:none;
+}
+
+
+/******底部导航******/
+#pageContainer .button-bar{
+    position:fixed;
+    width:94%;
+    left:0px;
+    bottom:0px;
+    padding:15px;
+    margin:0px 3%;
+    background-color:#ffffff;
+}
+
+.button-bar span{
+    float:left;
+    width:100%;
+    height:80px;
+    line-height: 80px;
+    font-size:20px;
+    color:#333;
+    text-align: center;
+
+}
+.button-bar .buy-btn{
+    float:left;
+    width:100%;
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    font-size:16px;
+    color:#fff;
+    border-radius: 5px;
+    background-color:#ff3300;
+}
+/****数量***/
+.item .receiver .tb{
+    width: 100%;
+    padding: 10px 0px;
+    line-height: 25px;
+}
+.item .receiver .tb .label {
+    float: left;
+    width: 60px;
+    color: #333;
+}
+.item .receiver .tb .value .amount {
+    float: left;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+}
+
+.item .receiver .tb .value .amount b {
+    float: left;
+    width: 35px;
+    height: 35px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.item .receiver .tb .value .amount .number {
+    float: left;
+    width: 60px;
+    height: 35px;
+    margin: 0px 2px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    background-color: #f5f5f5;
+    border: none;
+}
+
+
+/***地址**/
+.layui-m-layer1 .layui-m-layerchild{
+    width:80%;
+}
+#address-list{
+    display:none;
+}
+
+#address-list *,.layui-m-layer .layui-m-layermain *{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.address-list{
+    width:100%;
+    background-color:#fff;
+}
+
+.address-list .item{
+    width:100%;
+    padding:10px;
+    border-bottom:1px solid #eaeaea;
+}
+
+.address-list .item .item-hd{
+   width:100%;
+    height:25px;
+    line-height: 25px;
+}
+
+.address-list .item .item-hd .name{
+    font-size:16px;
+}
+
+.address-list .item .item-hd .tel{
+    position: absolute;
+    right:10px;
+    font-size:14px;
+}
+
+.address-list .item .item-bd{
+    width:100%;
+    line-height: 25px;
+    font-size:12px;
+}
+
+.address-list .item .item-bd b{
+    color:#ff0000;
+}

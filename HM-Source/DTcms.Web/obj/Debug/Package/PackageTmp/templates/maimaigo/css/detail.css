@@ -1,0 +1,461 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    font-family: "微软雅黑", "Helvetica Neue", Hiragino, Sans, GB, W3, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100% !important;
+    background-color: #f3f3f3;
+    \ background: url("../images/detail-bg.jpg") top center no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+ul, li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+a:link, a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #b70400;
+    text-decoration: none;
+}
+
+#pageContainer {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #eeeeee;
+}
+
+.no-data {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    float: left;
+    background-color: #fff;
+}
+
+.product-detail {
+    float: left;
+    width: 100%;
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0px auto;
+    padding-bottom: 55px;
+}
+
+img {
+    width: 100%;
+    border: none;
+}
+
+/*****在筹项目详情******/
+
+#pageContainer .product-detail {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.product-detail .top-bar{
+    position: fixed;
+    width:100%;
+    top:0px;
+    left:0px;
+    z-index:9999;
+    background-color: #f3f3f3;
+    height: 50px;
+}
+
+.product-detail .top-bar .back {
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    padding-left: 20px;
+    line-height: 30px;
+    background: url(../images/and_img.png) -365px -266px no-repeat;
+    z-index:9999;
+}
+
+
+.product-detail .top-bar .login {
+    position: absolute;
+    width: 30px;
+    top: 10px;
+    right: 15px;
+}
+
+.product-detail .top-bar .login a {
+    display: block;
+    width: 36px;
+    height: 33px;
+    background: url(../images/ucicon.png) 0px -33px no-repeat;
+    background-size: 30px auto;
+}
+
+
+.product-detail .top-board {
+    float: left;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.product-detail .top-board {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 5px;
+}
+
+.product-detail .top-board .slider {
+    float: left;
+    width: 100%;
+    padding: 50px 20%;
+}
+
+.product-detail .top-board .slider img {
+    float: left;
+    width: 100%;
+}
+
+.product-detail .info {
+    float: left;
+    width: 94%;
+    padding: 15px 10px;
+    margin: 15px 3%;
+    background-color: #fff;
+}
+
+.product-detail .info .title {
+    width: 100%;
+    padding: 0px 15px;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.product-detail .info .etitle {
+    width: 100%;
+    height: auto;
+    padding: 0px 15px;
+    line-height: 25px;
+    font-size: 14px;
+    color: #999;
+    
+}
+.product-detail .infocontent {
+    float: left;
+    width: 94%;
+    padding: 15px 10px;
+    margin: 0px 3%;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+.product-detail .infocontent .content {
+    width: 100%;
+    height: auto;
+    line-height: 25px;
+    font-size: 14px;
+    color: #999;    
+}
+
+.product-detail .infocontent .content p img 
+{
+    float:left;  
+}
+
+.product-detail .info .price {
+    width: 100%;
+    padding: 10px 15px;
+    line-height: 25px;
+    font-size: 24px;
+    color: #d80000;
+}
+
+.product-detail .info .price .label {
+    float: left;
+    width: 60px;
+    font-size:16px;
+    color: #333;
+}
+
+.product-detail .info .price i {
+    width: 50%;
+    padding-left:20px;
+    font-size:12px;
+    color:#999;
+    font-style: normal;
+}
+.kc{
+    width: 50%;
+    padding-left:20px;
+    font-size:12px;
+    color:#999;
+    font-style: normal;
+}
+
+/****数量***/
+.product-detail .info .tb{
+    width: 100%;
+    padding: 10px 15px;
+    line-height: 25px;
+}
+.product-detail .info .tb .label {
+    float: left;
+    width: 60px;
+    color: #333;
+}
+.product-detail .info .tb .value .amount {
+    float: left;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+}
+
+.product-detail .info .tb .value .amount b {
+    float: left;
+    width: 35px;
+    height: 35px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.product-detail .info .tb .value .amount .number {
+    float: left;
+    width: 60px;
+    height: 35px;
+    margin: 0px 2px;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    background-color: #f5f5f5;
+    border: none;
+}
+
+
+/*****礼包*******/
+.gift-list{
+    float: left;
+    width: 100%;
+    margin-top:10px;
+    border-top: 1px solid #eaeaea;
+}
+
+.gift-list li.item {
+    float: left;
+    width: 100%;
+    padding: 0px 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.gift-list .item .option{
+    position: relative;
+    float:left;
+    width:100%;
+    height:50px;
+    line-height: 50px;
+}
+
+.gift-list .item .option .label{
+    position: absolute;
+    display:block;
+    width:85px;
+    height:26px;
+    top:12px;
+    line-height: 26px;
+    font-size:16px;
+}
+
+.gift-list .item .option .value{
+    float:left;
+    width:100%;
+    padding-left:85px;
+    padding-right:10px;
+    color:#999;
+}
+
+.gift-list .item .sub-option{
+    float:left;
+    width:100%;
+    padding:5px 0px;
+    line-height: 50px;
+    border-top:1px dashed #eaeaea;
+}
+
+.gift-list .item .option.address input[type="text"],.gift-list .item .option.receiver input[type="text"]{
+    float:left;
+    width:100%;
+    height:30px;
+    padding:5px;
+    margin-top: 10px;
+    line-height: 30px;
+    font-size:14px;
+    color:#333;
+    border:none;
+    outline: none;
+}
+
+
+.gift-list .item.oilcard .option,.gift-list .item.goods .option {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.gift-list .item.oilcard .option .label,.gift-list .item.goods .option .label{
+    position: relative;
+    top:0px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.gift-list .item.oilcard .sub-option,.gift-list .item.goods .sub-option {
+    line-height: 25px;
+}
+
+.gift-list .item.oilcard .sub-option a,.gift-list .item.goods .sub-option a{
+    display:inline-block;
+    padding:2px 5px;
+    margin:2px 2px;
+    font-size:14px;
+    border:2px solid #eaeaea;
+}
+
+.gift-list .item.oilcard .sub-option a:hover,.gift-list .item.oilcard .sub-option a.active,.gift-list .item.goods .sub-option a:hover,.gift-list .item.goods .sub-option a.active{
+    color:#ff3300;
+    border:2px solid #ff3300;
+}
+
+/******底部导航******/
+#pageContainer .bottom-bar {
+    position: fixed;
+    width: 94%;
+    left: 0px;
+    bottom: 0px;
+    padding: 15px;
+    margin: 0px 3%;
+    background-color: #ffffff;
+}
+
+
+.bottom-bar .buy-btn {
+    float: left;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ff3300;
+}
+
+
+
+/**********滚动特效**********/
+.main_visual {
+    height: 330px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_image {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_image ul {
+    width: 9999px;
+    height: 80%;
+    overflow: hidden;
+    position: absolute;
+    top: 10%;
+    left: 0
+}
+
+.main_image li {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.main_image li span {
+    display: block;
+    width: 80%;
+    height: 100%;
+    margin:20px 10% 0px 10%;
+}
+
+.main_image li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+div.flicking_con {
+    position: absolute;
+    top: 290px;
+    left: 0px;
+    z-index: 999;
+    width: 100%;
+    height: 21px;
+    margin: 0;
+    text-align: center;
+}
+
+div.flicking_con a {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 5px 0px 0px;
+    padding: 0;
+    border-radius: 3px;
+    text-indent: -1000px;
+    border: 1px solid #fff;
+}
+
+div.flicking_con a.on {
+    background-color: #fff;
+    border: 1px solid #fff;
+}

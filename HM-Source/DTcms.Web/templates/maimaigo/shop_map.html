@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>{model.title}</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <style type="text/css">
+        #panel
+        {
+            position: fixed;
+            background-color: white;
+            max-height: 30%;
+            overflow-y: auto;
+            bottom: 20px;
+            width: 100%;
+        }
+        #back
+        {
+            position: fixed;
+            top: 10px;
+            width: 30px;
+            line-height: 30px;
+            height: 30px;
+            left: 10px;
+            background: url(/templates/maimaigo/images/and_img.png) -360px -266px no-repeat;
+            background-color: white;
+            border-radius: 50%;
+        }
+    </style>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=294df802b5f28dfd44814f948553e9db&plugin=AMap.Driving"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+    <div id="container">
+    </div>
+    <div id="panel">
+    </div>
+    <div id="back" onclick="window.history.go(-1);">
+    </div>
+    <script type="text/javascript">
+        var marker,geolocation;
+        //基本地图加载
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: [{model.fields[latnum]}, {model.fields[longnum]}], //地图中心点
+            zoom: 17 //地图显示的缩放级别
+        });
+         //加载地图，调用浏览器定位服务
+        map.plugin('AMap.Geolocation', function() {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                buttonPosition:'RB'
+            });
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition();
+            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+        //构造路线导航类
+        var driving = new AMap.Driving({
+            map: map,
+            panel: "panel"
+        });
+        //解析定位结果
+        function onComplete(data) {
+            // 根据起终点经纬度规划驾车导航路线
+            driving.search(new AMap.LngLat(data.position.getLng(), data.position.getLat()), new AMap.LngLat({model.fields[latnum]}, {model.fields[longnum]}));
+        }
+        //解析定位错误信息
+        function onError(data) {
+            addMarker();
+        }
+        function addMarker() {
+            if (marker) {
+                return;
+            }
+            marker = new AMap.Marker({
+                icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                position: [{model.fields[latnum]}, {model.fields[longnum]}]
+            });
+            marker.setMap(map);
+        }        
+    </script>
+</body>
+</html>

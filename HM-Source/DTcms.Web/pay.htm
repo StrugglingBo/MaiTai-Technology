@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>支付提示</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link href="/templates/maimaigo/css/pay.css" rel="stylesheet" type="text/css">
+    <script src="/scripts/jquery/jquery-1.11.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="J-weixin-tip weixin-tip">
+        <div class="weixin-tip-content">
+            请在菜单中选择在浏览器中打开,<br />
+            以完成支付
+        </div>
+    </div>
+    <div class="J-weixin-tip-img weixin-tip-img">
+    </div>
+    <script type="text/javascript" src="/ap.js"></script>
+    <script>
+        if (location.hash.indexOf('error') != -1) {
+            alert('参数错误,请检查');
+        }
+        else {
+            var ua = navigator.userAgent.toLowerCase();
+            var tip = $(".weixin-tip");
+            var tipImg = $(".J-weixin-tip-img");
+            if (ua.indexOf('micromessenger') != -1) {
+                $(".weixin-tip").show();
+                $(".J-weixin-tip-img").show();
+                //tip.style.display = 'block';
+                //tipImg.style.display = 'block';
+                if (ua.indexOf('iphone') != -1 || ua.indexOf('ipad') != -1 || ua.indexOf('ipod') != -1) {
+                    //tipImg.className = 'J-weixin-tip-img weixin-tip-img iphone';
+                    $(".J-weixin-tip-img").addClass("iphone");
+                }
+                else {
+                    //tipImg.className = 'J-weixin-tip-img weixin-tip-img android';
+                    $(".J-weixin-tip-img").addClass("android");
+                }
+            }
+            else {
+                var getQueryString = function (url, name) {
+                    var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+                    if (reg.test(url)) {
+                        return RegExp.$2.replace(/\+/g, " ");
+                    }
+                }
+                var param = getQueryString(location.href, 'goto') || '';
+                location.href = param != '' ? _AP.decode(param) : 'pay.html#error';
+            }
+        }
+    </script>
+</body>
+</html>

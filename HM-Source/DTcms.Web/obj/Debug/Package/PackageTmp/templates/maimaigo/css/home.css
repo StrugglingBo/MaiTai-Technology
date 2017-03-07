@@ -1,0 +1,556 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+#pageContainer {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+
+.home {
+    float: left;
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0px auto;
+    padding: 50px 0px;
+}
+
+
+img {
+    width: 100%;
+    border: none;
+}
+
+/**********滚动特效**********/
+.main_visual {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_image {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_image ul {
+    width: 9999px;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.main_image li {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.main_image li span {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.main_image li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+div.flicking_con {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    z-index: 999;
+    width: 100%;
+    height: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+div.flicking_con a {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 5px 0px 0px;
+    padding: 0;
+    border-radius: 3px;
+    text-indent: -1000px;
+    border: 1px solid #fff;
+}
+
+div.flicking_con a.on {
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+#btn_prev, #btn_next {
+    display: none;
+    z-index: 11111;
+    position: absolute;
+    display: block;
+    width: 73px !important;
+    height: 74px !important;
+    top: 50%;
+    margin-top: -37px;
+    display: none;
+}
+
+#btn_prev {
+    /*background: url(../images/hover_left.png) no-repeat left top;
+    left: 100px;*/
+}
+
+#btn_next {
+    /*background: url(../images/hover_right.png) no-repeat right top;
+    right: 100px;*/
+}
+
+/********分类按钮********/
+.home .quick-entry {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    padding: 15px 10px 10px 10px;
+    background-color: #fff;
+}
+
+.home .quick-entry a {
+    float: left;
+    width: 25%;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.home .quick-entry a img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 6px auto;
+}
+
+/****法物流通*****/
+.home .section {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.home .section .section-hd {
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.home .section .section-hd span {
+    padding: 0px 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.home .section .section-bd {
+    float: left;
+    width: 100%;
+    padding: 15px;
+}
+
+/*****推荐商品****/
+.home .section.feature .section-bd {
+    float: left;
+    width: 100%;
+    padding: 0px;
+}
+
+.home .feature li {
+    position: relative;
+    float: left;
+    width: 33%;
+    padding: 10px 10px;
+    border-right: 1px solid #eaeaea;
+}
+
+.home .feature li:last-child {
+    border-right: none;
+}
+
+.home .feature li .thumb img {
+
+}
+
+.home .feature li .title {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.home .feature li .price {
+    float: left;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #ff3300;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/***商品列表***/
+
+.home .section.goods .section-hd .nav {
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.home .goods .section-hd .nav ul {
+    float: left;
+    white-space: nowrap;
+}
+
+.home .goods .section-hd .nav ul li {
+    float: left;
+    width: 80px;
+}
+
+/*****/
+.home .section.goods .section-bd {
+    float: left;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.home .goods .section-bd li {
+    position: relative;
+    float: left;
+    width: 45%;
+    padding: 10px;
+    margin: 0px 3% 10px 3%;
+    border: 1px solid #eaeaea;
+}
+
+.home .goods .section-bd li:nth-child(2n) {
+    margin-left: 0px;
+}
+
+.home .goods .section-bd li .thumb img {
+
+}
+
+.home .goods .section-bd li .title {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.home .goods .section-bd li .price {
+    float: left;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #ff3300;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*****道教资讯******/
+.home .information .item {
+    width: 100%;
+    padding: 10px 0px 5px 0px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.home .information .item:last-child {
+    border-bottom: none;
+}
+
+.home .information .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.home .information .item .title {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.home .information .item .desc {
+    display: block;
+    height: 36px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home .information .item .date {
+    display: block;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.home .information .item .date .view {
+    float: left;
+}
+
+.home .information .item .date .time {
+    float: right;
+}
+
+/*****慈善救助******/
+.home .donation .section-bd {
+    padding: 0px;
+    background-color: #eaeaea;
+}
+
+.home .donation .item {
+    float: left;
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+
+.home .donation .item:last-child {
+    border-bottom: none;
+}
+
+.home .donation .item .thumb {
+    float: left;
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.home .donation .item .title {
+    display: block;
+    line-height: 20px;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.donation .item .desc {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target {
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.donation .item .target label {
+    display: inline-block;
+    width: 33%;
+    margin: 0px;
+    font-weight: normal;
+}
+
+.donation .item .target label .r {
+    font-weight: bold;
+    color: #ff3300;
+}
+
+.donation .item .target label.t1 {
+    text-align: left;
+}
+
+.donation .item .target label.t2 {
+    text-align: center;
+}
+
+.donation .item .target label.t3 {
+    text-align: right;
+}
+
+.home .donation .item .prg {
+    float: left;
+    width: 100%;
+}
+
+.donation .item .prg .track {
+    float: left;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #eaeaea;
+}
+
+.donation .item .prg .fill {
+    display: block;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ff3300;
+}
+
+.donation .item .support {
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+
+}
+
+.donation .item .support .list {
+    float: left;
+    padding-left: 10px;
+    min-width: 200px;
+    max-width: 500px;
+}
+
+.donation .item .support .list img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: -13px;
+    border-radius: 15px;
+    border: 2px solid #fff;
+}
+
+.donation .item .support .txt {
+    float: right;
+    width: 80px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+}
+
+
+
+/****信息推送***/
+.pop-mask{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index:1001;
+}
+
+.pop-tip{
+    position: fixed;
+    top:50%;
+    left:50%;
+    width:80%;
+    height:300px;
+    margin-left:-40%;
+    margin-top:-120px;
+    background-color:#333;
+    border-radius: 5px;
+    z-index:1002;
+}
+
+.pop-tip .close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-family: "arial";
+    font-size:20px;
+    font-weight:normal;
+    color:#fff;
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+.pop-tip .topbg{
+    position:absolute;
+    top:-80px;
+    left:50%;
+    width:50%;
+    margin-left:-25%;
+}
+
+.pop-tip .title{
+    margin-top:110px;
+    font-size:28px;
+    color:#fff;
+    text-align:center;
+}
+
+.pop-tip .content{
+    margin-top:10px;
+    padding:0px 20px;
+    font-size:16px;
+    color:#999;
+    text-align:center;
+}
+
+.pop-tip .btns{
+    margin-top:30px;
+    color:#999;
+    text-align:center;
+}
+
+.pop-tip .btns a{
+    font-size:18px;
+    color:#049eff;
+}
+.copyright{
+    float: left;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+    color: #999;
+    text-align: center;
+}

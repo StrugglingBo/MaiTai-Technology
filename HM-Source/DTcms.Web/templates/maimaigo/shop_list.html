@@ -1,0 +1,141 @@
+<!doctype html>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{model.title} - {site.name}</title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/shoplist.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--demo展示所用css end-->
+    <!--组件依赖css begin-->
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/widget/navigator/navigator.css" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/widget/navigator/navigator.iscroll.css" />
+    <link rel="stylesheet" type="text/css" href="<%templateskin%>/css/widget/navigator/navigator.default.css" />
+    <!--皮肤文件，若不使用该皮肤，可以不加载-->
+    <!--组件依赖css end-->
+    <!--组件依赖js begin-->
+    <script type="text/javascript" src="<%templateskin%>/js/zepto.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/zepto.cookie.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/zepto.extend.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/zepto.ui.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/zepto.iscroll.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/widget/navigator.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/widget/navigator.iscroll.js"></script>
+    <script src="<%templateskin%>/js/shoplistfresh.js"  charset="utf-8"></script>    
+    <!--组件依赖js end-->
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#category').navigator();
+        });
+        function GetQueryString(name) {
+            var url = window.location.search; //获取url中"?"符后的字串   
+            var theRequest = "";
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    if (strs[i].split("=")[0] == name) {
+                        theRequest = decodeURI(strs[i].split("=")[1]);
+                    }
+                }
+            }
+            return theRequest;
+        }
+        function dosearch() {
+            var keyword = $("#txtkeyword").val();
+            var city = GetQueryString("city");
+            if (city != "") {
+                window.location.href = $("#turl").val() + "?city=" + city + "&key=" + keyword;
+            }
+            else {
+                window.location.href = $("#turl").val() + "?key=" + keyword;
+            }
+            
+        }
+    </script>
+    <style>
+        @font-face
+        {
+            font-family: 'base_icon';
+            src: url(<%templateskin%>/fonts/base14.woff) format("woff"), url(<%templateskin%>/fonts/base14.otf);
+        }
+    </style>
+</head>
+<body>
+    <div id="pageContainer">
+        <header id="header" class="navbar">
+            <div class="nav-wrap-left">
+                <a href="<%linkurl("citypicker")%>" class="react">
+                    <span class="nav-city"><font id="spancityname">获取中</font><space></space><i class="text-icon icon-downarrow"></i></span>
+                </a>
+            </div>
+
+            <div class="box-search">
+                 <a gaevent="imt/homepage/search" class="react" href="javascript:;">
+                    <input id="txtkeyword" class="single-line" type="text" placeholder="输入商家/品类/商圈">
+                    <input type="button" class="icon-search text-icon" value="⌕" onclick="dosearch()">
+                </a>
+            </div>
+            <div class="nav-wrap-right">
+                <a class="react" rel="nofollow" href="<%linkurl("usercenter")%>">
+                    <span class="nav-btn">
+                        <i class="text-icon">⍥</i>我的
+                    </span>
+                </a>
+            </div>
+        </header>
+        <div class="list">
+            <div id="category">
+                <ul class="line">
+                    <%if(category_id==0)%>
+                    <li><a href="<%linkurl("shop_list","0")%>" class="cur">全部</a></li>
+                    <%else%>
+                    <li><a href="<%linkurl("shop_list","0")%>">全部</a></li>
+                    <%/if%>
+                    <%set DataTable categoryList=get_category_list("localserver",0)%>
+                    <%foreach(DataRow cdr in categoryList.Rows)%>
+                    <%if({strtoint({cdr[id]})}==category_id)%>
+                    <li><a href="<%linkurl("shop_list",{cdr[id]})%>" class="cur">{cdr[title]}</a></li>
+                    <%else%>
+                    <li><a href="<%linkurl("shop_list",{cdr[id]})%>">{cdr[title]}</a></li>
+                    <%/if%>
+                    <%/foreach%>
+                </ul>
+            </div>
+            <!--商品列表//-->
+            <div class="section goods">
+                <div class="section-bd">
+                    <ul id="thelist">
+                    </ul>
+                </div>
+                <div id="pullUp">
+                    <span class="pullUpLabel"></span>
+                </div>
+                <input type="hidden" id="cid" value="{category_id}" />
+                <input type="hidden" id="strwhere" value="" />
+                <input type="hidden" id="turl" value="<%linkurl("shop_list",{category_id})%>" />
+            </div>
+            <!--导航//-->
+            <div class="bottom-bar">
+                <a href="<%linkurl("index")%>" class="cat1"><i></i><span>首页</span></a><a href="<%linkurl("integral_list",0)%>"
+                    class="cat5"><i></i><span>麦豆换购</span></a><a href="<%linkurl("shop")%>" class="cat2 active"><i></i><span>本地生活</span></a><a
+                        href="<%linkurl("order_list")%>" class="cat3"><i></i><span>我的订单</span></a><a href="<%linkurl("usercenter")%>"
+                            class="cat4"><i></i><span>会员中心</span></a></div>
+        </div>
+    </div>
+</body>
+</html>

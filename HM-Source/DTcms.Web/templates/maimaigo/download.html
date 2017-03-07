@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="<%templateskin%>/css/animate.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/base.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/download.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <title>麦买购APP下载</title>
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script>
+        function browserRedirect() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            if (bIsIpad || bIsIphoneOs) {
+                window.location.href = "http://itunes.apple.com/cn/app/mai-mai-gou/id1180061485?mt=8";
+            }
+        }
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }     
+    </script>
+    <script type="text/javascript">
+        $(window).resize(function () {
+            var $w = $(window).width();
+            var $h = $(window).height();
+
+            $("#pageContainer").css("height", $h); //设置内容高度
+        });
+        $(function () {
+            $(window).resize();
+            browserRedirect();
+            if (isWeiXin) {
+                _system._guide(true);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="pageContainer">
+        <ul class="down">
+            <li class="bg"></li>
+            <li class="tag"><a href="http://itunes.apple.com/cn/app/mai-mai-gou/id1180061485?mt=8"
+                target="_blank">
+                <img src="<%templateskin%>/images/down02.png" /></a></li>
+            <li class="btn"><a href="http://downloadpkg.apicloud.com/app/download?path=http://7y4a7t.com1.z0.glb.clouddn.com/2c4390dfd5dcb3968089bf6b144fb3a2_d"
+                target="_blank">
+                <img src="<%templateskin%>/images/down03.png" /></a></li>
+        </ul>
+    </div>
+    <!---分享提示层-//-->
+    <div id="cover">
+    </div>
+    <div id="guide">
+        <img src="<%templateskin%>/images/guide1.png"></div>
+    <script type="text/javascript" src="<%templateskin%>/js/sharetip.js">
+    </script>
+</body>
+</html>

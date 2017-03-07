@@ -1,0 +1,151 @@
+@charset "utf-8";
+/* CSS Document */
+#pageContainer {
+    position: relative;
+    float:left;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+}
+
+.order-list {
+    float:left;
+    width:100%;
+    padding: 50px 0px 60px 0px;
+}
+
+/******订单详情******/
+
+.order-list ul {
+    float: left;
+    width: 100%;
+}
+
+.order-list ul li {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 5px 15px;
+    margin-top:5px;
+    background-color:#fff;
+}
+
+.order-list ul li em {
+    position: absolute;
+    top:20px;
+    right:20px;
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    background: url(../images/uc_clip.png) -330px -515px no-repeat;
+    background-size: auto 550px;
+}
+
+.order-list ul li .item-bd{
+    float:left;
+    width:100%;
+    height:80px;
+    padding:0px 5px;
+}
+
+
+
+.order-list li .thumb {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left:20px;
+    top:10px;
+    background-color: #fff;
+    border: 2px solid #eaeaea;
+}
+
+.order-list li .thumb img {
+    width: 100%;
+    height: 100%;
+}
+
+.order-list li .title {
+    float: left;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+    color: #333;
+    padding-left: 70px;
+    overflow: hidden;
+}
+
+.order-list li .property {
+    float: left;
+    width: 100%;
+    height: 20px;
+    margin-left: 2px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #999;
+    padding-left: 70px;
+    overflow: hidden;
+}
+
+.order-list li .price {
+    float: left;
+    width: 100%;
+    height: 20px;
+    margin-left: 2px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #ff3300;
+    padding-left: 70px;
+    overflow: hidden;
+}
+
+.order-list li .price i{
+    font-size:12px;
+    font-style:normal;
+    color: #999;
+}
+
+
+.order-list ul li .item-ft{
+    float:left;
+    width:100%;
+    height:40px;
+    padding:0px 5px;
+    line-height: 40px;
+    border-top:1px solid #eaeaea;
+}
+
+.order-list ul li .item-ft .time{
+    float:left;
+    width:70%;
+    font-size:12px;
+    color:#999;
+}
+
+.order-list ul li .item-ft .status{
+    float:left;
+    width:30%;
+    text-align:right;
+}
+
+.order-list ul li .item-ft .status i{
+    font-size:12px;
+    font-style:normal;
+    color:#ff6600;
+}
+
+.order-list ul li .item-ft .status .btn{
+    display:inline-block;
+    padding:3px 10px;
+    margin-left:5px;
+    border-radius: 5px;
+    font-size:12px;
+    font-style:normal;
+    color:#422502;
+    text-align:center;
+    background-color:#fccb0f;
+}
+

@@ -1,0 +1,120 @@
+<!doctype html>
+<html style="font-size: 60px;">
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>
+        <%if({userModel.group_id}==3)%>
+        区域内会员-麦买购
+        <%else%>
+        我的团队-麦买购
+        <%/if%>
+    </title>
+    <!-- Bootstrap -->
+    <link href="<%templateskin%>/css/animate.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%templateskin%>/css/base.css" rel="stylesheet" type="text/css">
+    <link href="<%templateskin%>/css/usercenter.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script src="<%templateskin%>/js/bootstrap.min.js"></script>
+    <script src="<%templateskin%>/js/groupfresh.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script>
+        function buy_vip() {
+            var cp = $("#cpoint").val();
+            var uid = $("#uid").val();
+            var amount = $("#txtamount").val();
+            if (amount * 1 <= cp * 1 && isNumberBy100(amount)) {
+                var pre = $("#txtpre").val();
+                var rechargeno = $("#payment").val();
+                var baseurl = '/api/appfun.ashx?action=outmoney_save&uid=' + uid + '&amount=' + amount + '&pre=' + pre + '&rechargeno=' + rechargeno;
+                $.ajax({
+                    url: baseurl,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: '1000',
+                    cache: 'false',
+                    success: function (data) {
+                        if (data.success == "true") {
+                            var turl = data.url;
+                            if (turl != "") {
+                                if (typeof (data.url) == "undefined") {
+                                    location.href = $("#turl").val();
+                                } else {
+                                    location.href = data.url;
+                                }
+                            }
+                        } else {
+                            layer.open({
+                                content: data.msg,
+                                time: 2000
+                            });
+                        }
+                    }
+                });
+            }
+            else {
+                layer.open({
+                    content: "提现积分必须小于等于可提现积分,且为100的整数倍!",
+                    time: 2000
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="top-bar">
+            <a href="<%linkurl("usercenter")%>" class="back"></a><span class="title">
+                <%if({userModel.group_id}==3)%>
+                区域内会员列表
+                <%else%>
+                我的团队
+                <%/if%></span>
+            <div class="refresh">
+                <a href="javascript:window.location.reload();"></a>
+            </div>
+        </div>
+        <div class="common-wrapper">
+            <div class="uc-group">
+                <%if({userModel.nick_name}!="")%><div class="myintro">
+                    我的推荐人：<i>{userModel.nick_name}</i></div>
+                <%/if%>
+                <%if({dtype}!=3)%>
+                <ul class="tab">
+                    <%if({dtype}==1)%>
+                    <li class="active">一级团队({g1})</li>
+                    <%else%>
+                    <li><a href="<%linkurl("usergroup","1")%>">一级团队({g1})</a></li>
+                    <%/if%>
+                    <%if({dtype}==2)%>
+                    <li class="active">二级团队({g2})</li>
+                    <%else%>
+                    <li><a href="<%linkurl("usergroup","2")%>">二级团队({g2})</a></li>
+                    <%/if%>
+                </ul>
+                <%/if%>
+                <div id="thelist">
+                </div>
+                <div id="pullUp">
+                    <span class="pullUpLabel">数据加载中,请稍后....</span>
+                </div>
+                <input type="hidden" id="uid" value="{userModel.id}" />
+                <input type="hidden" id="dotype" value="{dtype}" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

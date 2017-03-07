@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{site.seo_title}</title>
+    <meta name="keywords" content="{site.seo_keyword}" />
+    <meta name="description" content="{site.seo_description}" />
+    <link href="<%templateskin%>/css/animate.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="<%templateskin%>/css/detail.css" rel="stylesheet" type="text/css">
+    <script src="<%templateskin%>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.event.drag-1.5.min.js"></script>
+    <script type="text/javascript" src="<%templateskin%>/js/jquery.touchSlider.js"></script>
+    <link href="<%templateskin%>/js/skin/layer.css" rel="stylesheet" type="text/css" />
+    <script src="<%templateskin%>/js/layer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%templateskin%>/js/common.js"></script>
+    <!--主图滚动//-->
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="product-detail">
+            <div class="top-bar">
+                <a href="<%linkurl("integral_list",""+{model.category_id})%>" class="back"></a>
+                <div class="login">
+                    <a href="<%linkurl("usercenter")%>"></a>
+                </div>
+            </div>
+            <!--产品简介//-->
+            <div class="top-board">
+                <!--效果html开始-->
+                <div class="main_visual">
+                    <div class="flicking_con">
+                        <%if(model.albums!=null)%>
+                        <%set int i=0 %>
+                        <%foreach(DTcms.Model.article_albums modelt in model.albums)%>
+                        <%set i=i+1 %>
+                        <a href="javascript:;">{i}</a>
+                        <%/foreach%>
+                        <%/if%>
+                    </div>
+                    <div class="main_image">
+                        <ul>
+                            <%foreach(DTcms.Model.article_albums modeltimg in model.albums)%>
+                            <li><span style="background: url('{modeltimg.original_path}') center center no-repeat;
+                                background-size: contain;"></span></li>
+                            <%/foreach%>
+                        </ul>
+                        <a href="javascript:;" id="btn_prev"></a><a href="javascript:;" id="btn_next"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="title">
+                    {model.title}</div>
+                <div class="price">
+                    <span class="label">单价</span><span class="value">￥{model.fields[sell_price]}+{model.fields[point]}麦豆</span></div>
+                <div class="tb" id="selectTb">
+                    <span class="label">数量</span><span class="value"><i class="amount"><b class="reduce">-</b><input
+                        id="commoditySelectNum" maxlength="9" value="1" maxvalue="{model.fields[stock_quantity]}"
+                        onkeydown="return checkNumber(event);" type="text" class="number" /><b class="increase">+</b></i></span><i class="kc">库存：{model.fields[stock_quantity]}</i>
+                </div>
+                <%set List<DTcms.Model.article_goods_spec> specList=get_article_goods_spec({model.id}, "parent_id=0")%>
+                <ul id="goodsSpecBox" class="gift-list">
+                    <%foreach(DTcms.Model.article_goods_spec modelt1 in specList)%>
+                    <li class="item oilcard">
+                        <div class="option">
+                            <span class="label">{modelt1.title}</span></div>
+                        <div class="sub-option">
+                            <%set List<DTcms.Model.article_goods_spec> itemList=get_article_goods_spec({model.id}, "parent_id="+modelt1.spec_id)%>
+                            <%if(itemList!=null)%>
+                            <%foreach(DTcms.Model.article_goods_spec modelt2 in itemList)%>
+                            <a specid="{modelt2.spec_id}" href="javascript:;">{modelt2.title}</a>
+                            <%/foreach%>
+                            <%/if%>
+                        </div>
+                    </li>
+                    <%/foreach%>
+                </ul>
+                <input type="hidden" id="commodityGoodsNo" name="commodityGoodsNo" value="" />
+            </div>
+            <div class="infocontent">
+                <div class="content">
+                    {model.content}
+                </div>
+            </div>
+            <input id="commodityArticleId" type="hidden" value="{model.id}" />
+            <input id="commodityGoodsId" type="hidden" value="0" />
+            <!--底部按钮//-->
+            <div class="bottom-bar">
+                <a href="javascript:;" onclick="gobuy()" class="buy-btn">立即购买</a></div>
+        </div>
+    </div>
+    <input type="hidden" id="buyurl" value="<%linkurl("confirm","?gid="+{model.id})%>" />
+    <input type="hidden" id="pid" value="{model.id}" />
+    <script type="text/javascript">
+        $(function () {
+            initGoodsSpec('{config.webpath}tools/submit_ajax.ashx?action=get_article_goods_info');
+            var $actionType = ""; //cart,order
+            //购买数量
+            $(".tb .amount .reduce").click(function () {
+                if ($(".tb .amount .number").val() - 1 <= 0) {
+                    $(".tb .amount .number").val(1);
+                } else {
+                    $(".tb .amount .number").val($(".tb .amount .number").val() - 1);
+                }
+            });
+
+            $(".tb .amount .increase").click(function () {
+                var maxnum = $("#commoditySelectNum").attr("maxvalue");
+                if ((parseInt($(".tb .amount .number").val()) + 1) > parseInt(maxnum)) {
+                    return false;
+                }
+                else {
+                    $(".tb .amount .number").val(parseInt($(".tb .amount .number").val()) + 1);
+                }
+            });
+            $(".main_visual").hover(function () {
+                $("#btn_prev,#btn_next").fadeIn()
+            }, function () {
+                $("#btn_prev,#btn_next").fadeOut()
+            });
+
+            $dragBln = false;
+
+            $(".main_image").touchSlider({
+                flexible: true,
+                speed: 200,
+                btn_prev: $("#btn_prev"),
+                btn_next: $("#btn_next"),
+                paging: $(".flicking_con a"),
+                counter: function (e) {
+                    $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+                }
+            });
+
+            $(".main_image").bind("mousedown", function () {
+                $dragBln = false;
+            });
+
+            $(".main_image").bind("dragstart", function () {
+                $dragBln = true;
+            });
+
+            $(".main_image a").click(function () {
+                if ($dragBln) {
+                    return false;
+                }
+            });
+
+            timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+
+            $(".main_visual").hover(function () {
+                clearInterval(timer);
+            }, function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+            $(".main_image").bind("touchstart", function () {
+                clearInterval(timer);
+            }).bind("touchend", function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+        });
+        //只允许输入数字
+        function checkNumber(e) {
+            var keynum = window.event ? e.keyCode : e.which;
+            if ((48 <= keynum && keynum <= 57) || keynum == 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function gobuy() {
+            var buynum = $("#commoditySelectNum").val();
+            var carduname = $("#carduname").val();
+            var cardnumber = $("#cardnumber").val();
+            var goodno = $("#commodityGoodsNo").val();
+            var proid = $("#pid").val();
+            var sublength = $(".sub-option a");
+            if (sublength.length > 0 && goodno == "") {
+                layer.open({
+                    content: "请选择产品分类后购买",
+                    time: 2000
+                });
+            }
+            else {
+                if (buynum > 0) {
+                    location.href = $("#buyurl").val() + "&num=" + buynum + "&carduname=" + carduname + "&cardnumber=" + cardnumber + "&goodno=" + goodno;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多次分类插件</title>
+	<link rel="stylesheet" type="text/css" href="css/classify.css">
+</head>
+<body>
+	<h1>多层分类展示demo</h1>
+	<div class="container">
+		<input class="selectBtn" type="button" value="选择分类">
+		<input class="a" type="button" value="查看">
+		<!-- 分类容器 -->
+		<div class="classify">
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/classify.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//测试数据，json格式
+		var data = [
+					{"name":"食物","sub":[{"name":"水果","sub":[{"name":"香蕉","sub":[{"name":"泰国风味"},{"name":"越南风味"},{"name":"老挝风味"}]}]},{"name":"水果","sub":[{"name":"香蕉","sub":[{"name":"泰国风味"},{"name":"越南风味"},{"name":"老挝风味"}]}]}]},
+					{"name":"家具","sub":[{"name":"椅子","sub":[{"name":"好椅子"},{"name":"烂椅子"},{"name":"没有椅子"}]},{"name":"桌子","sub":[{"name":"好桌子"},{"name":"烂桌子"},{"name":"没有桌子"}]}]},
+					{"name":"景点","sub":[{"name":"北京"},{"name":"上海"},{"name":"广州"},{"name":"深圳"}]}
+					];
+		//实例化
+		var classify = new Classify(".classify",data);
+		//测试按钮获取选中数据，json格式
+		$('.a').click(function(){
+			alert(classify.result[0]);
+		});
+	});
+</script>
+</body>
+</html>

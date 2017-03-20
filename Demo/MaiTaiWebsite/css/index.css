@@ -1,0 +1,308 @@
+body{
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+    /*ǿ�����ع�����*/
+}
+.layout{
+    min-width: 320px;
+    max-width: 1366px;
+}
+.layout .layout-div{
+    width: 100%;
+    height: 660px;
+    background: #f2f2f2;
+}
+/*头部导航栏*/
+.layout .layout-div .hr{
+    width: 1366px;
+    height: 76px;
+    background-color: rgba(0,0,0,.02); /*设置透明度*/
+    border-bottom:1px solid #c9c9c9;
+    background: white;
+    position: fixed;
+    z-index: 1111;
+}
+/*������*/
+.layout .layout-div .hr .head{
+    width: 1070px;
+    height: 76px;
+    z-index:111;
+    border: 0;
+    margin: 0 auto; /*居中*/
+}
+.layout .layout-div .hr .head .top{
+    width: 100%;
+    height: 56px;
+    float: left;
+    position: relative;
+    top: 10px;
+}
+.layout .layout-div .hr .head .top .CompanyName{
+    width: 300px;
+    height: 56px;
+    display: inline-block;
+    /*background: yellow;*/
+}
+.layout .layout-div .hr .head .top .CompanyName img{
+    margin-top: 18px;
+}
+.layout .layout-div .hr .head .top .MenuBar{
+    width: 556px;
+    height: 56px;
+    display: inline-block;
+    /*background: red;*/
+    position: absolute;
+}
+.layout .head .top .MenuBar ul{
+    width: 100%;
+    height: 21px;
+    display: inline;
+    position: absolute;
+    top: 18px;
+}
+.layout .head .top .MenuBar li{
+    width: 64px;
+    font-size: 16px;
+    margin: 15px 0 0 50px;
+    display: inline;
+}
+.layout .head .top .MenuBar li div{
+    width: 66px;
+    height: 100%;
+    display: inline;
+}
+
+.layout .head .top .MenuBar li div #down1{
+    width: 66px;
+    height: 10px;
+    background-image: url("../img/down.png");
+    position: absolute;
+    margin-left: 32px;
+    margin-top: 18px;
+    display: none;
+}
+.layout .head .top .MenuBar li div #down2{
+    width: 66px;
+    height: 10px;
+    background-image: url("../img/down.png");
+    position: absolute;
+    margin-left: 136px;
+    margin-top: 18px;
+    display: none;
+}
+.layout .head .top .MenuBar li div #down3{
+    width: 66px;
+    height: 10px;
+    background-image: url("../img/down.png");
+    position: absolute;
+    margin-left: 256px;
+    margin-top: 18px;
+    display: none;
+}
+.layout .head .top .MenuBar li div #down4{
+    width: 66px;
+    height: 10px;
+    background-image: url("../img/down.png");
+    position: absolute;
+    margin-left: 374px;
+    margin-top: 18px;
+    display: none;
+}
+.layout .head .top .MenuBar li div #down5{
+    width: 66px;
+    height: 10px;
+    background-image: url("../img/down.png");
+    position: absolute;
+    margin-left: 492px;
+    margin-top: 18px;
+    display: none;
+}
+
+.layout .layout-div .hr .head .top .CallMi{
+    width: 145px;
+    height: 42px;
+    /*background: pink;*/
+    position: absolute;
+    top: 7px;
+    right: 0px;
+}
+.layout .head .top .CallMi p{
+    display: inline-table;
+    font-size: 14px;
+}
+.layout .head .top .CallMi span{
+    display:inline-table;
+    font-size: 16px;
+}
+/*banner*/
+.layout .layout-div .banner{
+    width: 100%;
+    height: 660px;
+}
+
+/*banner小圆点*/
+#b03 { width: 640px;}
+#b03 .dots { position: absolute; left: 0; right: 0; bottom: 20px;top: 600px}
+#b03 .dots li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    text-indent: -999em;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: .4;
+    -webkit-transition: background .5s, opacity .5s;
+    -moz-transition: background .5s, opacity .5s;
+    transition: background .5s, opacity .5s;
+}
+#b03 .dots li.active {
+    background: #fff;
+    opacity: 1;
+}
+.banner { position: relative;text-align: center;}
+.banner li { list-style: none; }
+.banner ul li { float: left; }
+
+/*公司介绍页遮罩层*/
+.layout .layout-div .banner  .sectionMask{
+    height: 660px;
+    width: 100%;
+    position: relative;
+}
+.layout .layout-div .banner .sectionMask .sectionMasks{
+    width: 1064px;
+    height: 564px;
+    /*background: pink;*/
+    z-index:1000;
+    position: absolute;
+    margin-top: 86px;
+    margin-left: 140px;
+}
+.layout .layout-div .banner .sectionMask .sectionMasks .sectionMaskText{
+    width: 100%;
+    height: 254px;
+    /*background: yellow;*/
+    background-color: rgba(254,254,254,.6);
+}
+.layout .layout-div .banner .sectionMask .sectionMasks .sectionMaskText .sectionMaskTextP{
+    width: 1004px;
+    height: 100%;
+    position: absolute;
+    margin-left: 30px;
+}
+.layout .layout-div .banner .sectionMask .sectionMasks .sectionMaskVideo{
+    width: 540px;
+    height: 300px;
+    /*background: red;*/
+    position: absolute;
+    margin-left: 262px;
+    margin-top: 10px;
+}
+/*加盟代理遮罩及text*/
+.layout .layout-div .banner .Mask{
+    height: 660px;
+    width: 100%;
+    position: relative;
+}
+.layout .layout-div .banner .Mask .MaskText{
+    width: 550px;
+    height: 550px;
+    /*background: pink;*/
+    z-index:1000;
+    position: absolute;
+    margin-top: 97px;
+    margin-left: 158px;
+}
+.layout .layout-div .banner .Mask .MaskText .MaskTexts{
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    bottom:0;
+    width: 80%;
+    color: #fff;
+    /*background: rgba(0,0,0,.8);*/
+    height: 80%;
+    margin:10% 10%;
+}
+/*下载APP*/
+.layout .layout-div .banner .DownApp{
+    height: 660px;
+    width: 100%;
+    position: relative;
+}
+.layout .layout-div .banner .DownApp .DownApps{
+    height: 74px;
+    width: 520px;
+    /*background: pink;*/
+    position: absolute;
+    margin-top: 554px;
+    margin-left: 230px;
+    z-index: 1000;
+}
+.layout .layout-div .banner .DownApp .DownApps .DownAppAndroid{
+    position: absolute;
+    left: 0;
+}
+.layout .layout-div .banner .DownApp .DownApps .DownAppIOS{
+    position: absolute;
+    right: 0;
+}
+/*联系我们*/
+.layout .layout-div .banner .CallMiS{
+    height: 660px;
+    width: 100%;
+    position: relative;
+}
+/*.layout .layout-div .banner .CallMiS img{*/
+    /*display:block;*/
+    /*width: 100%;*/
+    /*height: 217px;*/
+/*}*/
+.layout .layout-div .banner .CallMiS .CallMis{
+    height:340px;
+    width: 1070px;
+    /*background: pink;*/
+    position: absolute;
+    margin-top: -64px;
+    margin-left: 148px;
+    z-index: 1000;
+    /*border-bottom: solid 1px;*/
+}
+.layout .layout-div .banner .CallMiS .CallMis .CallMisPhone{
+    height: 190px;
+    width: 270px;
+    margin-left: 70px;
+    /*background: yellow;*/
+}
+.layout .layout-div .banner .CallMiS .CallMis .CallMisPhone span{
+    display: block;
+    text-align: left;
+    line-height: 2;
+}
+.layout .layout-div .banner .CallMiS .CallMis .CallMisCode{
+    width: 137px;
+    height: 147px;
+    /*background: lawngreen;*/
+    position: absolute;
+    right: 512px;
+    bottom: 0;
+}
+.layout .layout-div .banner .CallMiS .CallMis .CallMisMap{
+    width: 476px;
+    height: 340px;
+    /*background: green;*/
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.layout .layout-div .banner .CallMiS .footText{
+    width: 700px;
+    height: 30px;
+    /*background: yellow;*/
+    position: absolute;
+    bottom: 14px;
+    left: 330px;
+}

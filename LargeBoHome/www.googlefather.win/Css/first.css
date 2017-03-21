@@ -1,0 +1,298 @@
+﻿body{
+    width: 1366px;
+    overflow: hidden;/*超出部分隐藏*/
+
+}
+@font-face{
+    　　font-family:at;
+        src:url('../3.ttf');
+    }
+
+/*为放烟火设置canvas环境*/
+canvas{cursor:crosshair;display:block;left:0;position:absolute;
+    /*top:0;z-index:20*/
+}
+
+.beijing{  /*设置背景图片*/
+    width: 1366px;
+    height: 600px;
+    background: url("../Images/z4.jpg") no-repeat;
+    background-size: 100%   666px;
+    position: fixed;
+}
+.right-top-da{  /*右边的隐藏菜单*/
+    width: 100px;
+    height: 550px;
+    /*background: gainsboro;*/
+    position: absolute;
+    top: 50px;
+    right: -100px;
+    -webkit-transition: right 1s;
+    -moz-transition: right 1s;
+    -ms-transition: right 1s;
+    -o-transition: right 1s;
+    transition: right 1s;
+    -webkit-border-top-left-radius:50px;/*给该盒子一个动画效果，使它在1s内隐藏*/
+    -webkit-border-top-right-radius:50px;
+    -webkit-border-bottom-left-radius:50px;
+    -webkit-border-bottom-right-radius:50px;
+}
+.right-top-da:hover{
+    right: 0;
+    -webkit-transition: right 2s;/*给这个盒子一个动画效果，使它在一定的时间内显示所有的内容*/
+    -moz-transition: right 2s;
+    -ms-transition: right 2s;
+    -o-transition: right 2s;
+    transition: right 2s;
+}
+.right-top-da-a{  /*右边隐藏菜单的存放指示图标的div*/
+    width: 30px;
+    height:30px;
+    background: url("../Images/2428.gif")no-repeat;
+    position: absolute;
+    top: 160px;
+    right: 100px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+.right-top{/*右边隐藏菜单的指示图标*/
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+li{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;/*不被选中*/
+}
+a{
+    /*个人主页中a标签*/
+    text-decoration: none;/*去掉a标签的下划线*/
+    color: white;
+    font-family:at;
+}
+/*以下是隐藏菜单的每个li中的样式*/
+.right-top-cai1{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 50px;
+
+}
+.right-top-cai2{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 100px;
+}
+.right-top-cai3{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top:150px;
+}
+.right-top-cai4{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 200px;
+}
+.right-top-cai5{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 250px;
+}
+.right-top-cai6{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top:300px;
+}
+.right-top-cai7{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 350px;
+}
+.right-top-cai8{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top: 400px;
+}
+.right-top-cai9{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    color:white;
+    position: absolute;
+    top:450px;
+}
+/*.video1{*/
+    /*width: 500px;*/
+    /*height: 350px;*/
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*left: 700px;*/
+    /*/!*z-index: 111;*!/*/
+/*}*/
+
+/*视频播放功能*/
+.video{
+    width: 500px;
+    height: 350px;
+    position: absolute;
+    top: 50px;
+    left: 700px;
+    display: none;
+    border-radius: 100px;
+}
+#center{
+    width: 100px;
+    height: 100px;
+    /*background: white;*/
+    position: absolute;
+    top: 250px;
+    left: 120px;
+    border-radius: 100px;
+    /*background:url("../Images/2.jpg")no-repeat;*/
+    background-size: 100px 100px;
+}
+/*@keyframes tupian {*/
+     /*0%{top:250px;left: 120px;transform:rotate(60deg)}*/
+     /*10%{top:200px;left:180px;transform:rotate(120deg)}*/
+     /*50%{top:150px;left:260px;transform:rotate(180deg)}*/
+     /*100%{top:300px;left:200px;transform:rotate(360deg)}*/
+ /*}*/
+/*.center{*/
+    /*-webkit-animation: tupian 2s;*/
+    /*-o-animation: tupian 2s;*/
+    /*animation: tupian 2s;*/
+
+    /*-webkit-animation-iteration-count: infinite;*/
+    /*-moz-animation-iteration-count: infinite;*/
+    /*-o-animation-iteration-count: infinite;*/
+    /*animation-iteration-count: infinite;*/
+/*}*/
+/*视频控制按钮*/
+.center-aixin{
+    width: 130px;
+    height: 120px;
+    /*background: white;*/
+    position: absolute;
+    top: 285px;
+    left: 400px;
+    border-radius: 60px;
+}
+
+@keyframes ai{
+    0%{right: 0; color:red;}
+    10%{right: 100px;  color:palevioletred;}
+    20%{right: 250px;  color:blueviolet;}
+    50%{right: 400px;color:yellow;}
+    80%{right: 600px;  color:fuchsia;}
+    90%{right: 800px;  color:palevioletred;}
+    100%{right: 1010px; color:green}
+    }
+/*给页面底部的内容一个样式*/
+.button{
+    -webkit-animation: ai 15s;
+    -o-animation: ai 15s;
+    animation: ai 15s; /*绑定动画*/
+
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;/*运动到右边后反向运动*/
+
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;/*运动无数次*/
+}
+/*给隐藏菜单的动画效果*/
+@keyframes bian {
+    0%{ background-color:ghostwhite;}
+    10%{ background-color:pink;}
+    20%{background:palevioletred;}
+    30%{background:blueviolet;}
+    50%{background:yellow;}
+    70%{background:fuchsia;}
+    90%{background:palevioletred;}
+    100%{background:hotpink}
+}
+.right-top-da{
+    -webkit-animation: bian 3s;
+    -o-animation: bian 3s;
+    animation: bian 3s; /*绑定动画*/
+
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;/*运动无数次*/
+}
+
+
+@-webkit-keyframes rotate{from{-webkit-transform: rotate(0deg)}
+    to{-webkit-transform: rotate(360deg)}
+}
+@-moz-keyframes rotate{from{-moz-transform: rotate(0deg)}
+    to{-moz-transform: rotate(359deg)}
+}
+@-o-keyframes rotate{from{-o-transform: rotate(0deg)}
+    to{-o-transform: rotate(359deg)}
+}
+@keyframes rotate{from{transform: rotate(0deg)}
+    to{transform: rotate(359deg)}
+}
+.canvas{
+    border-radius:100%;
+    -webkit-animation: rotate 3s linear infinite;
+    -moz-animation: rotate 3s linear infinite;
+    -o-animation: rotate 3s linear infinite;
+    animation: rotate 3s linear infinite
+}
+#center {
+    border-radius: 250px;
+    -webkit-animation: rotate 3s linear infinite;
+    -moz-animation: rotate 3s linear infinite;
+    -o-animation: rotate 3s linear infinite;
+    animation: rotate 3s linear infinite;
+}

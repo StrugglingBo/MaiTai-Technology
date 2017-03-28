@@ -1,0 +1,50 @@
+/*初始化标签样式*/
+html,body,div,header,footer,head,input,nav,footer,ul,li,a,p,ol,h1,h2,h3,h4,h5,h6,img,dt,dd{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*这行代码是设置内容大小的变化只在固定的div内容放缩，不会随内容的放大而改变原有的样式结构*/
+}
+input{
+    border: none; /*去掉边框样式：input、div、a、button等都会有边框样式*/
+    outline-style:none; /*去掉原有的输入框轮廓样式*/
+}
+li{
+    list-style: none; /*去掉li标签的点*/
+
+}
+img
+{
+    border:0;
+    vertical-align:middle;
+}  /*  去掉图片低部默认的3像素空白缝隙*/
+
+a{
+    text-decoration: none;
+     /*去掉a标签下面的下划线*/
+}
+
+textarea
+{
+    resize:none;
+
+} /*防止文本域拖动*/
+
+/*清除浮动*/
+.clearfix:before,.clearfix:after
+{
+    content:"";
+    display:table;
+}
+.clearfix:after
+{
+    clear:both;
+}
+.clearfix
+{
+    *zoom:1;/*IE/7/6*/
+}
+
+a {color:#666; text-decoration:none; }
+a:hover{color:#C81623;}
+
+
